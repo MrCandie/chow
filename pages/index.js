@@ -1,12 +1,20 @@
 import Head from "next/head";
-import { Fragment } from "react";
+import { Fragment, useContext, useState } from "react";
 import Header from "../components/homepage/header/Header";
 import Promo from "../components/homepage/hero/promo/Promo";
 import Recommended from "../components/homepage/hero/recommended/Recommended";
 import Restaurant from "../components/homepage/hero/restaurant/Restaurant";
 import Search from "../components/homepage/hero/search/Search";
+import { deplaceDummyData, dummyStores } from "../store";
+import { CartContext } from "../CartContext";
 
 export default function Homepage() {
+  const restaurant = dummyStores();
+  const menu = deplaceDummyData();
+
+  const cart = useContext(CartContext);
+  const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <Fragment>
       <Head>
@@ -18,11 +26,11 @@ export default function Homepage() {
         <link rel="icon" href="" />
       </Head>
       <main>
-        <Header />
+        <Header quantity={quantity} />
         <Search />
         <Promo />
-        <Restaurant />
-        <Recommended />
+        <Restaurant restaurant={restaurant} />
+        <Recommended meal={menu} />
       </main>
     </Fragment>
   );

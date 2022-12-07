@@ -90,10 +90,10 @@ export default function Promo() {
                 <div className={classes.content}>
                   <h1>20% off</h1>
                   <p>On your first order</p>
-                  <Link href="">Order now</Link>
+                  <Link href="/meals">Order now</Link>
                 </div>
                 <div className={classes.image}>
-                  <img src="/images/meal3.avif" />
+                  <img src="/images/big.jfif" />
                 </div>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function Promo() {
                 <div className={classes.content}>
                   <h1>20% off</h1>
                   <p>On your first order</p>
-                  <Link href="">Order now</Link>
+                  <Link href="/meals">Order now</Link>
                 </div>
                 <div className={classes.image}>
                   <img src="/images/meal2.avif" />

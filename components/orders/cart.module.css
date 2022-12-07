@@ -1,0 +1,119 @@
+.section {
+  width: 90%;
+  margin: 0rem auto;
+}
+.section h1 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+.back {
+  position: absolute;
+  background: #fff;
+  left: 5%;
+  top: 2%;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.cart {
+  margin: 2rem auto;
+  width: 40%;
+}
+.container {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.image {
+  width: 20%;
+}
+
+.image img {
+  width: 100%;
+  object-fit: cover;
+  height: 100px;
+}
+.content h1 {
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: start;
+}
+.content {
+  flex: 1;
+}
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.action h2 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.control {
+  padding: 0.7rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.control .span {
+  border: 1px solid green;
+  border-radius: 50%;
+  padding: 0.3rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.section hr {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 1rem auto;
+}
+.price h1 {
+  display: flex;
+  align-items: flex-start;
+  font-size: 1.1rem;
+}
+.cost {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cost p {
+  font-size: 1rem;
+}
+.none {
+  display: block;
+  text-align: center;
+  /* margin: 2rem 0; */
+}
+.price button,
+.none {
+  padding: 1rem;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  background: green;
+  margin: 1rem 0;
+  border-radius: 0.4rem;
+  transition: transform ease-in 0.2s;
+}
+.price button:active {
+  transform: scale(0.6);
+}
+
+@media (max-width: 850px) {
+  .cart,
+  .price {
+    width: 90%;
+  }
+}

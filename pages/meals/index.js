@@ -1,28 +1,22 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import Meal from "../../components/meals/meals/Meals";
 import Header from "../../components/homepage/header/Header";
+import { storeData } from "../../store";
+import { CartContext } from "../../CartContext";
 
 export default function Meals({ meal }) {
+  const cart = useContext(CartContext);
+  const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
   return (
     <Fragment>
-      <Header />
+      <Header quantity={quantity} />
       <Meal data={meal} />
     </Fragment>
   );
 }
 
 export async function getStaticProps() {
-  const res = await fetch(
-    "https://chow-d2355-default-rtdb.firebaseio.com/chow.json"
-  );
-  const data = await res.json();
-  const loadedData = [];
-  for (const key in data) {
-    loadedData.push({
-      id: key,
-      ...data[key],
-    });
-  }
+  const loadedData = await storeData();
 
   return {
     props: {

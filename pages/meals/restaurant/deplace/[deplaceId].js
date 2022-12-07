@@ -1,11 +1,15 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
+import { CartContext } from "../../../../CartContext";
 import Header from "../../../../components/homepage/header/Header";
 import MealsDetails from "../../../../components/meals/meals/MealsDetails";
+import { getDeplace } from "../../../../store";
 
 export default function MealDetails({ food }) {
+  const cart = useContext(CartContext);
+  const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
   return (
     <Fragment>
-      <Header />
+      <Header quantity={quantity} />
       <MealsDetails meals={food} />;
     </Fragment>
   );
@@ -14,19 +18,8 @@ export default function MealDetails({ food }) {
 export async function getStaticProps(context) {
   const { params } = context;
   const deplaceId = params.deplaceId;
-  const res = await fetch(
-    "https://chow-d2355-default-rtdb.firebaseio.com/deplace.json"
-  );
-  const data = await res.json();
-  const loadedData = [];
-  for (const key in data) {
-    loadedData.push({
-      id: key,
-      ...data[key],
-    });
-  }
 
-  const meal = loadedData.find((item) => item.id === deplaceId);
+  const meal = await getDeplace(deplaceId);
 
   return {
     props: { food: meal },

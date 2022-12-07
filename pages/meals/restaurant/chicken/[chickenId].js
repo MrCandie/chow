@@ -1,8 +1,12 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
+import { CartContext } from "../../../../CartContext";
 import Header from "../../../../components/homepage/header/Header";
 import MealsDetails from "../../../../components/meals/meals/MealsDetails";
+import { chickenData } from "../../../../store";
 
 export default function ChickenDetails({ food }) {
+  const cart = useContext(CartContext);
+  const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
   const [meal, setMeal] = useState([]);
   fetch("https://chow-d2355-default-rtdb.firebaseio.com/chicken.json")
     .then((res) => res.json())
@@ -19,7 +23,7 @@ export default function ChickenDetails({ food }) {
 
   return (
     <Fragment>
-      <Header />
+      <Header quantity={quantity} />
       <MealsDetails meals={food} />
     </Fragment>
   );
@@ -28,19 +32,10 @@ export default function ChickenDetails({ food }) {
 export async function getStaticProps(context) {
   const { params } = context;
   const chickenId = params.chickenId;
-  const res = await fetch(
-    "https://chow-d2355-default-rtdb.firebaseio.com/chicken.json"
-  );
-  const data = await res.json();
-  const loadedData = [];
-  for (const key in data) {
-    loadedData.push({
-      id: key,
-      ...data[key],
-    });
-  }
 
-  const meal = loadedData.find((item) => item.id === chickenId);
+  const data = await chickenData();
+
+  const meal = data.find((item) => item.id === chickenId);
 
   return {
     props: { food: meal },

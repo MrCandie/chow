@@ -1,32 +1,26 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
+import { CartContext } from "../../../../CartContext";
 import Header from "../../../../components/homepage/header/Header";
 import Simis from "../../../../components/meals/meals/Simi";
+import { chickenData } from "../../../../store";
 
 export default function Chicken({ meal }) {
+  const cart = useContext(CartContext);
+  const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
   return (
     <Fragment>
-      <Header />
+      <Header quantity={quantity} />
       <Simis meal={meal} />
     </Fragment>
   );
 }
 
 export async function getStaticProps() {
-  const res = await fetch(
-    "https://chow-d2355-default-rtdb.firebaseio.com/chicken.json"
-  );
-  const data = await res.json();
-  const loadedData = [];
-  for (const key in data) {
-    loadedData.push({
-      id: key,
-      ...data[key],
-    });
-  }
+  const data = await chickenData();
 
   return {
     props: {
-      meal: loadedData,
+      meal: data,
     },
   };
 }

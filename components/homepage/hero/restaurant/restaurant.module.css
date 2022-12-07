@@ -58,6 +58,7 @@
 }
 .desc h1 {
   font-size: 1.5rem;
+  text-transform: capitalize;
 }
 .delivery {
   margin-top: -1rem;

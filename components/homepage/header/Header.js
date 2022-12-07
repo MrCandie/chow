@@ -6,7 +6,7 @@ import { GiMeal } from "react-icons/gi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 
-export default function Header() {
+export default function Header({ quantity }) {
   return (
     <Fragment>
       <header className={classes.header}>
@@ -22,17 +22,17 @@ export default function Header() {
               <Link href="/meals">Meals</Link>
             </li>
             <li>
-              <Link href="">Orders</Link>
+              <Link href="/cart">Orders</Link>
             </li>
             <li>
               <Link href="">Profile</Link>
             </li>
           </ul>
         </nav>
-        <Link href="">
+        <Link href="/cart">
           <span className={classes.cart}>
             <AiOutlineShoppingCart />
-            <span>6</span>
+            <span>{quantity}</span>
           </span>
         </Link>
         <div className={classes.mobile}>
@@ -54,7 +54,7 @@ export default function Header() {
                 <span>
                   <AiOutlineShoppingCart />
                 </span>
-                <Link href="">Orders</Link>
+                <Link href="/cart">Orders</Link>
               </li>
               <li>
                 <span>

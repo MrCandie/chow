@@ -2,17 +2,23 @@ import Link from "next/link";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import classes from "./recommended.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Spinner from "../../../../spinner/spinner";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
+import { useRouter } from "next/router";
 
-export default function Recommended() {
+export default function Recommended({ meal }) {
+  const router = useRouter();
+  if (meal.length === 0) {
+    return <Spinner />;
+  }
   return (
     <section className={classes.section}>
       <div className={classes.title}>
         <h1>Recommended for you</h1>
-        <Link href="">
+        <Link href="/meals">
           view all
           <span>
             <AiOutlineArrowRight />
@@ -27,66 +33,26 @@ export default function Recommended() {
           modules={[Pagination]}
           className={classes.container}
         >
-          <SwiperSlide className={classes.meal}>
-            <div>
-              <div className={classes.image}>
-                <img src="/images/meal7.avif" />
-                <span></span>
+          {meal.map((item) => (
+            <SwiperSlide
+              key={item.id}
+              onClick={() =>
+                router.push(`/meals/restaurant/${item.key}/${item.id}`)
+              }
+              className={classes.meal}
+            >
+              <div>
+                <div className={classes.image}>
+                  <img src={`../../..${item.images}`} />
+                  <span></span>
+                </div>
+                <div className={classes.content}>
+                  <h1>{item.name}</h1>
+                  <h2>N{item.price}</h2>
+                </div>
               </div>
-              <div className={classes.content}>
-                <h1>Vegetable spaghetti</h1>
-                <h2>#1450</h2>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={classes.meal}>
-            <div>
-              <div className={classes.image}>
-                <img src="/images/meal8.avif" />
-                <span></span>
-              </div>
-              <div className={classes.content}>
-                <h1>Vegetable spaghetti</h1>
-                <h2>#1450</h2>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={classes.meal}>
-            <div>
-              <div className={classes.image}>
-                <img src="/images/meal9.avif" />
-                <span></span>
-              </div>
-              <div className={classes.content}>
-                <h1>Vegetable spaghetti</h1>
-                <h2>#1450</h2>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={classes.meal}>
-            <div>
-              <div className={classes.image}>
-                <img src="/images/meal10.avif" />
-                <span></span>
-              </div>
-              <div className={classes.content}>
-                <h1>Vegetable spaghetti</h1>
-                <h2>#1450</h2>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={classes.meal}>
-            <div>
-              <div className={classes.image}>
-                <img src="/images/meal11.avif" />
-                <span></span>
-              </div>
-              <div className={classes.content}>
-                <h1>Vegetable spaghetti</h1>
-                <h2>#1450</h2>
-              </div>
-            </div>
-          </SwiperSlide>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
 
@@ -98,66 +64,26 @@ export default function Recommended() {
           modules={[Pagination]}
           className={classes.container}
         >
-          <SwiperSlide className={classes.meal}>
-            <div>
-              <div className={classes.image}>
-                <img src="/images/meal7.avif" />
-                <span></span>
+          {meal.map((item) => (
+            <SwiperSlide
+              key={item.id}
+              onClick={() =>
+                router.push(`/meals/restaurant/${item.key}/${item.id}`)
+              }
+              className={classes.meal}
+            >
+              <div>
+                <div className={classes.image}>
+                  <img src={`../../..${item.images}`} />
+                  <span></span>
+                </div>
+                <div className={classes.content}>
+                  <h1>{item.name}</h1>
+                  <h2>N{item.price}</h2>
+                </div>
               </div>
-              <div className={classes.content}>
-                <h1>Vegetable spaghetti</h1>
-                <h2>#1450</h2>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={classes.meal}>
-            <div>
-              <div className={classes.image}>
-                <img src="/images/meal8.avif" />
-                <span></span>
-              </div>
-              <div className={classes.content}>
-                <h1>Vegetable spaghetti</h1>
-                <h2>#1450</h2>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={classes.meal}>
-            <div>
-              <div className={classes.image}>
-                <img src="/images/meal9.avif" />
-                <span></span>
-              </div>
-              <div className={classes.content}>
-                <h1>Vegetable spaghetti</h1>
-                <h2>#1450</h2>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={classes.meal}>
-            <div>
-              <div className={classes.image}>
-                <img src="/images/meal10.avif" />
-                <span></span>
-              </div>
-              <div className={classes.content}>
-                <h1>Vegetable spaghetti</h1>
-                <h2>#1450</h2>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className={classes.meal}>
-            <div>
-              <div className={classes.image}>
-                <img src="/images/meal11.avif" />
-                <span></span>
-              </div>
-              <div className={classes.content}>
-                <h1>Vegetable spaghetti</h1>
-                <h2>#1450</h2>
-              </div>
-            </div>
-          </SwiperSlide>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </section>

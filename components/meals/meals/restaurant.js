@@ -8,6 +8,7 @@ export default function Restaurant({ data }) {
     <section className={classes.rest}>
       {data.map((item) => (
         <div
+          key={item.id}
           onClick={() => router.push(`/meals/restaurant/${item.key}`)}
           className={classes.restaurant}
         >

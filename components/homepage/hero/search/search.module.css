@@ -1,5 +1,5 @@
 .section {
-  margin: 1rem auto;
+  margin: 3.5rem auto;
   width: 30%;
   display: flex;
   align-items: center;
@@ -28,7 +28,7 @@
 }
 @media (max-width: 860px) {
   .section {
-    margin: 5rem auto;
+    margin: 3rem auto;
     background: transparent;
     width: 95%;
   }
