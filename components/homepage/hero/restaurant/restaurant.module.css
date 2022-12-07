@@ -1,0 +1,108 @@
+.section {
+  width: 95%;
+  margin: 5rem auto;
+}
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title h1 {
+  font-size: 1.5rem;
+}
+.title a {
+  display: flex;
+  gap: 1rem;
+  font-size: 1rem;
+  color: green;
+  font-weight: bold;
+  align-items: center;
+}
+.title a span {
+  display: flex;
+  align-items: center;
+}
+.container {
+  width: 100%;
+  display: flex;
+}
+.restaurant {
+  width: 80%;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.4rem;
+}
+.image {
+  width: 100%;
+}
+.image img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+.content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.content img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.desc {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.desc h1 {
+  font-size: 1.5rem;
+}
+.delivery {
+  margin-top: -1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.delivery h2 {
+  font-size: 1rem;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.delivery h2 span {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+.delivery p {
+  font-size: 1rem;
+}
+.mobile {
+  display: none;
+}
+@media (max-width: 850px) {
+  .large {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+  .title h1 {
+    font-size: 1rem;
+  }
+  .restaurant {
+    width: 100%;
+  }
+  .desc h1 {
+    font-size: 0.8rem;
+  }
+  .delivery p {
+    font-size: 0.6rem;
+  }
+  .delivery h2 {
+    font-size: 0.8rem;
+  }
+}

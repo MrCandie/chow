@@ -1,0 +1,69 @@
+.section {
+  width: 95%;
+  margin: -3rem auto 7rem;
+}
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title h1 {
+  font-size: 1.5rem;
+}
+.title a {
+  display: flex;
+  gap: 1rem;
+  font-size: 1rem;
+  color: green;
+  font-weight: bold;
+  align-items: center;
+}
+.title a span {
+  display: flex;
+  align-items: center;
+}
+.container {
+  width: 100%;
+  display: flex;
+}
+.meal {
+  width: 30%;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.4rem;
+}
+.image {
+  width: 100%;
+}
+.image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.content {
+  /* text-align: center; */
+}
+.content h1 {
+  font-size: 1.5rem;
+}
+.content h2 {
+  font-size: 1rem;
+}
+.mobile {
+  display: none;
+}
+
+@media (max-width: 850px) {
+  .large {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+  .content h1 {
+    font-size: 1rem;
+  }
+  .meal {
+    width: 80%;
+  }
+}
