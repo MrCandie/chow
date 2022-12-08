@@ -15,3 +15,12 @@ a {
 * {
   box-sizing: border-box;
 }
+.center {
+  text-align: center;
+  margin: 10rem 0;
+  font-size: 1.1rem;
+  padding: 5rem;
+}
+.center h1 {
+  font-weight: normal;
+}

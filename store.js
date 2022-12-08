@@ -5,6 +5,7 @@ const DUMMY_DATA = [
     images: "/images/jolloff.jfif",
     price: 850,
     key: "deplace",
+    recommended: true,
   },
   {
     id: "d2",
@@ -12,6 +13,7 @@ const DUMMY_DATA = [
     images: "/images/fried.jfif",
     price: 900,
     key: "deplace",
+    recommended: true,
   },
   {
     id: "d3",
@@ -41,6 +43,7 @@ const DUMMY_DATA = [
     images: "/images/citizen.jfif",
     price: 2000,
     key: "chicken",
+    recommended: true,
   },
   {
     id: "ch3",
@@ -62,6 +65,7 @@ const DUMMY_DATA = [
     images: "/images/zinger.jfif",
     price: 3000,
     key: "kfc",
+    recommended: true,
   },
   {
     id: "k2",
@@ -145,6 +149,10 @@ export function getMeal(id) {
 
 export function deplaceDummyData() {
   return DUMMY_DATA;
+}
+
+export function recommendedData() {
+  return DUMMY_DATA.filter((item) => item.recommended);
 }
 
 export async function storeData() {

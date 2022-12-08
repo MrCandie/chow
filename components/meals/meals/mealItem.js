@@ -5,7 +5,7 @@ import classes from "./meal.module.css";
 
 export default function MealItem({ meal }) {
   if (meal.length === 0) {
-    return <Spinner />;
+    return;
   }
   const router = useRouter();
   return (

@@ -5,6 +5,7 @@ import { AiFillHome } from "react-icons/ai";
 import { GiMeal } from "react-icons/gi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
+import { AiOutlineSearch } from "react-icons/ai";
 
 export default function Header({ quantity }) {
   return (
@@ -17,6 +18,9 @@ export default function Header({ quantity }) {
           <ul>
             <li>
               <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/search">Search</Link>
             </li>
             <li>
               <Link href="/meals">Meals</Link>
@@ -43,6 +47,12 @@ export default function Header({ quantity }) {
                   <AiFillHome />
                 </span>
                 <Link href="/">Home</Link>
+              </li>
+              <li>
+                <span>
+                  <AiOutlineSearch />
+                </span>
+                <Link href="/search">Search</Link>
               </li>
               <li>
                 <span>

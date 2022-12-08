@@ -1,15 +1,22 @@
 import classes from "./search.module.css";
 import { BsFillFilterSquareFill } from "react-icons/bs";
+import { Fragment, useRef } from "react";
 
-export default function Search() {
+export default function Search({ onSubmit }) {
+  const searchRef = useRef();
+  function searchFoodHandler(e) {
+    e.preventDefault();
+    const search = searchRef.current.value;
+    onSubmit(search);
+  }
+
   return (
-    <section className={classes.section}>
-      <form>
-        <input type="search" placeholder="Search for meals, restaurants" />
-      </form>
-      <span>
-        <BsFillFilterSquareFill />
-      </span>
-    </section>
+    <Fragment>
+      <section className={classes.section}>
+        <form onSubmit={searchFoodHandler}>
+          <input ref={searchRef} type="search" placeholder="Search for meals" />
+        </form>
+      </section>
+    </Fragment>
   );
 }

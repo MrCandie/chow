@@ -1,7 +1,7 @@
 .section {
   display: flex;
   /* gap: 1rem; */
-  margin: -1rem auto;
+  margin: 7rem auto 2rem;
   width: 95%;
 }
 .large {
@@ -65,6 +65,9 @@
   display: none;
 }
 @media (max-width: 850px) {
+  .section {
+    margin: 3rem auto -1rem;
+  }
   .image img {
     height: 70px;
   }
