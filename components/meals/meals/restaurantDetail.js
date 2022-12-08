@@ -12,7 +12,7 @@ export default function RestaurantDetail({ data, name }) {
       <Fragment>
         <h1>{restaurant.name}</h1>
         <div className={classes.rating}>
-          <div className={classes.images}>
+          <div className={classes.imgs}>
             <div className={classes.black}></div>
             <img src={`../../..${restaurant.image}`} />
           </div>
