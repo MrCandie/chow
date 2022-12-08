@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function Cart({ cartData }) {
   const cart = useContext(CartContext);
   const router = useRouter();
-  const cost = cart.getTotalCost() + 400;
+  const cost = cart.getTotalCost() + 600;
 
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -53,7 +53,9 @@ export default function Cart({ cartData }) {
               <p>N{cart.getTotalCost() === 0 ? 0 : cost}</p>
             </div>
             <hr />
-            <button>Proceed To Payment</button>
+            <button onClick={() => router.push("/checkout")}>
+              Proceed To Payment
+            </button>
           </div>
         </Fragment>
       ) : (

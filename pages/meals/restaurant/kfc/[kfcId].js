@@ -2,37 +2,39 @@ import React, { Fragment, useContext } from "react";
 import { CartContext } from "../../../../CartContext";
 import Header from "../../../../components/homepage/header/Header";
 import MealsDetails from "../../../../components/meals/meals/MealsDetails";
-import { getDeplace } from "../../../../store";
+import { getkfc } from "../../../../store";
 
-export default function MealDetails({ food }) {
+export default function Index({ meals }) {
   const cart = useContext(CartContext);
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
   return (
     <Fragment>
       <Header quantity={quantity} />
-      <MealsDetails meals={food} />;
+      <MealsDetails meals={meals} />;
     </Fragment>
   );
 }
 
 export async function getStaticProps(context) {
   const { params } = context;
-  const deplaceId = params.deplaceId;
+  const kfcId = params.kfcId;
 
-  const meal = await getDeplace(deplaceId);
+  const data = await getkfc(kfcId);
 
   return {
-    props: { food: meal },
+    props: {
+      meals: data,
+    },
   };
 }
 
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { deplaceId: "d1" } },
-      { params: { deplaceId: "d2" } },
-      { params: { deplaceId: "d3" } },
-      { params: { deplaceId: "d4" } },
+      { params: { kfcId: "k1" } },
+      { params: { kfcId: "k2" } },
+      { params: { kfcId: "k3" } },
+      { params: { kfcId: "k4" } },
     ],
     fallback: "blocking",
   };
