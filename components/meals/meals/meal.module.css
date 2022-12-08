@@ -158,6 +158,43 @@
   height: 400px;
   object-fit: cover;
 }
+.rating {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem;
+  position: relative;
+}
+.images {
+  position: absolute;
+  width: 100%;
+}
+.images img {
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+}
+.rate {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.1rem;
+  color: #000;
+  font-weight: bold;
+}
+.black {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+}
+
 @media (max-width: 850px) {
   .section {
     margin: 3rem auto;

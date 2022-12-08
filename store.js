@@ -123,7 +123,12 @@ const DUMMY_STORES = [
     key: "chicken",
   },
   { id: "c3", image: "/images/kfc.png", name: "KFC", key: "kfc" },
-  { id: "c4", image: "/images/dominos.png", name: "dominos", key: "dominos" },
+  {
+    id: "c4",
+    image: "/images/dominos.png",
+    name: "dominos pizza",
+    key: "dominos",
+  },
 ];
 
 export function dummyStores() {
