@@ -9,10 +9,12 @@ import { GrContact } from "react-icons/gr";
 import Link from "next/link";
 import { useContext } from "react";
 import { CartContext } from "../../CartContext";
+import { firebaseConfig } from "../firebase-config";
 
 export default function Profile() {
   const cart = useContext(CartContext);
   const router = useRouter();
+
   return (
     <section className={classes.section}>
       <div className={classes.container}>
@@ -20,7 +22,7 @@ export default function Profile() {
           <span onClick={() => router.replace("/")} className={classes.back}>
             <AiOutlineArrowLeft />
           </span>
-          <h1>Hello, Name!</h1>
+          <h1>Hello, </h1>
         </div>
         <div className={classes.account}>
           <h1>Account</h1>

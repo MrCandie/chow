@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyCmmjurdBPzfUbHRK-DWQuugfLanC_SO6o",
   authDomain: "chow-d2355.firebaseapp.com",
   databaseURL: "https://chow-d2355-default-rtdb.firebaseio.com",
