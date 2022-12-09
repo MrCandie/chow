@@ -35,12 +35,23 @@
   display: none;
 }
 .cart {
-  font-size: 1.1rem;
-  color: #333;
   cursor: pointer;
 }
-.cart span {
-  font-size: 0.6rem;
+.cart .spans {
+  font-size: 1.2rem;
+  color: #333;
+  font-size: 1.2rem;
+}
+.cart .spans .span {
+  font-size: 0.7rem;
+}
+.carts {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.user {
+  display: none;
 }
 @media (max-width: 850px) {
   .header {
@@ -102,5 +113,10 @@
   .mobile nav ul li:active {
     transform: scale(0.7);
     color: green;
+  }
+  .user {
+    display: block;
+    color: #333;
+    font-size: 1.4rem;
   }
 }

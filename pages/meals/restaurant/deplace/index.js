@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { Fragment, useContext } from "react";
 import { CartContext } from "../../../../CartContext";
 import Header from "../../../../components/homepage/header/Header";
@@ -10,6 +11,13 @@ export default function Simi({ meal, data }) {
   const name = "de place";
   return (
     <Fragment>
+      <Head>
+        <title>De Place</title>
+        <meta
+          name="description"
+          content="Get the best experience ordering for your favorite meal with ease from your favorite restaurant"
+        />
+      </Head>
       <Header quantity={quantity} />
       <Simis name={name} data={data} meal={meal} />;
     </Fragment>

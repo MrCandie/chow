@@ -6,6 +6,7 @@ import { GiMeal } from "react-icons/gi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
 
 export default function Header({ quantity }) {
   return (
@@ -29,16 +30,23 @@ export default function Header({ quantity }) {
               <Link href="/cart">Orders</Link>
             </li>
             <li>
-              <Link href="">Profile</Link>
+              <Link href="/profile">Profile</Link>
             </li>
           </ul>
         </nav>
-        <Link href="/cart">
-          <span className={classes.cart}>
-            <AiOutlineShoppingCart />
-            <span>{quantity}</span>
-          </span>
-        </Link>
+        <div className={classes.carts}>
+          <Link className={classes.cart} href="/cart">
+            <span className={classes.spans}>
+              <AiOutlineShoppingCart />
+              <span className={classes.span}>{quantity}</span>
+            </span>
+          </Link>
+          <Link className={classes.user} href="/profile">
+            <span className={classes.cart}>
+              <AiOutlineUser />
+            </span>
+          </Link>
+        </div>
         <div className={classes.mobile}>
           <nav>
             <ul>
@@ -70,7 +78,7 @@ export default function Header({ quantity }) {
                 <span>
                   <CgProfile />
                 </span>
-                <Link href="">Profile</Link>
+                <Link href="/profile">Profile</Link>
               </li>
             </ul>
           </nav>

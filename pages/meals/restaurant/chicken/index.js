@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { Fragment, useContext } from "react";
 import { CartContext } from "../../../../CartContext";
 import Header from "../../../../components/homepage/header/Header";
@@ -10,6 +11,13 @@ export default function Chicken({ meal, data }) {
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
   return (
     <Fragment>
+      <Head>
+        <title>Chicken Republic</title>
+        <meta
+          name="description"
+          content="Get the best experience ordering for your favorite meal with ease from your favorite restaurant"
+        />
+      </Head>
       <Header quantity={quantity} />
       <Simis name={name} data={data} meal={meal} />
     </Fragment>

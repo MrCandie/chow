@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { Fragment, useContext } from "react";
 import { CartContext } from "../../../../CartContext";
 import Header from "../../../../components/homepage/header/Header";
@@ -11,6 +12,13 @@ export default function KFC({ meal, data }) {
 
   return (
     <Fragment>
+      <Head>
+        <title>KFC</title>
+        <meta
+          name="description"
+          content="Get the best experience ordering for your favorite meal with ease from your favorite restaurant"
+        />
+      </Head>
       <Header quantity={quantity} />
       <Simis data={data} name={name} meal={meal} />
     </Fragment>

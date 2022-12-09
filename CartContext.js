@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { createContext, useState } from "react";
 import { getChicken, getDeplace, getDeplaceMeal, getMeal } from "./store";
 
@@ -8,24 +9,30 @@ export const CartContext = createContext({
   removeOneFromCart: () => {},
   deleteFromCart: () => {},
   getTotalCost: () => {},
+  token: "",
+  isLoggedIn: false,
+  login: (token) => {},
+  logout: () => {},
 });
 
 export function CartProvider({ children }) {
   const [cartProduct, setCartProduct] = useState([]);
-  // const [deplace, setDeplaceData] = useState([]);
+  const [token, setToken] = useState("");
+  const router = useRouter();
 
-  // fetch("https://chow-d2355-default-rtdb.firebaseio.com/deplace.json")
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     const deplaceData = [];
-  //     for (const key in data) {
-  //       deplaceData.push({
-  //         id: key,
-  //         ...data[key],
-  //       });
-  //     }
-  //     setDeplaceData(deplaceData);
-  //   });
+  const userIsLoggedIn = !!token;
+
+  function logoutHandler() {
+    setToken(null);
+    localStorage.removeItem("token");
+    router.replace("/account/login");
+  }
+
+  function loginHandler(token) {
+    setToken(token);
+    localStorage.setItem("token", token);
+    router.replace("/");
+  }
 
   function getProductQuantity(id) {
     const quantity = cartProduct.find((product) => product.id === id)?.quantity;
@@ -75,8 +82,7 @@ export function CartProvider({ children }) {
     let chickenCost = 0;
     cartProduct.map((cart) => {
       const deplace = getMeal(cart.id);
-      // const chickens = chicken.find((item) => item.id === cart.id);
-      //   deplaceCost += deplaces.price * cart.quantity;
+
       deplaceCost += deplace.price * cart.quantity;
     });
 
@@ -90,6 +96,10 @@ export function CartProvider({ children }) {
     deleteFromCart,
     getTotalCost,
     getProductQuantity,
+    token: token,
+    isLoggedIn: userIsLoggedIn,
+    login: loginHandler,
+    logout: logoutHandler,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
