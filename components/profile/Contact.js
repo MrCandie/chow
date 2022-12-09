@@ -12,13 +12,15 @@ export default function Contact() {
   return (
     <section className={classes.section}>
       <div className={classes.container}>
-        <span
-          onClick={() => router.replace("/profile")}
-          className={classes.back}
-        >
-          <AiOutlineArrowLeft />
-        </span>
-        <h1>Contact us</h1>
+        <div className={classes.profile}>
+          <span
+            onClick={() => router.replace("/profile")}
+            className={classes.back}
+          >
+            <AiOutlineArrowLeft />
+          </span>
+          <h1>Contact us</h1>
+        </div>
         <div className={classes.account}>
           <div className={classes.items}>
             <Link
