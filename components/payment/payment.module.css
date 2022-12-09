@@ -1,0 +1,46 @@
+.payment {
+  margin: 3rem auto;
+  width: 40%;
+}
+.payment form {
+  padding: 1rem;
+}
+.formDetail {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+}
+.formDetail label {
+  font-size: 1rem;
+  color: #333;
+}
+
+.formDetail input {
+  padding: 0.5rem;
+  outline: none;
+  border-radius: 0.4rem;
+  border: 1px solid #ccc;
+}
+.form button {
+  padding: 0.7rem 1rem;
+  width: 100%;
+  margin: 2rem 0;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  background: green;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 0.4rem;
+  transition: transform 0.2s ease-in;
+}
+.form button:active {
+  transform: scale(0.5);
+}
+@media (max-width: 850px) {
+  .payment {
+    width: 90%;
+  }
+}

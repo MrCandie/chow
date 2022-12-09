@@ -10,7 +10,7 @@ export default function Checkout() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          router.push("/success");
+          router.push("/payment");
         }}
       >
         <div className={classes.details}>

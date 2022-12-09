@@ -1,5 +1,4 @@
 import classes from "./search.module.css";
-import { BsFillFilterSquareFill } from "react-icons/bs";
 import { Fragment, useRef } from "react";
 
 export default function Search({ onSubmit }) {
@@ -7,7 +6,10 @@ export default function Search({ onSubmit }) {
   function searchFoodHandler(e) {
     e.preventDefault();
     const search = searchRef.current.value;
-    onSubmit(search);
+    if (!search) {
+      return;
+    }
+    onSubmit(search.trim().toLowerCase());
   }
 
   return (
