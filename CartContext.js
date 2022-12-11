@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { createContext, useState } from "react";
-import { getChicken, getDeplace, getDeplaceMeal, getMeal } from "./store";
+import { getMeal } from "./store";
 
 export const CartContext = createContext({
   items: [],
@@ -13,14 +13,27 @@ export const CartContext = createContext({
   isLoggedIn: false,
   login: (token) => {},
   logout: () => {},
+  addFavorite: (id) => {},
+  removeFavorite: (id) => {},
+  ids: [],
 });
 
 export function CartProvider({ children }) {
   const [cartProduct, setCartProduct] = useState([]);
-  const [token, setToken] = useState("");
+  const [favoritesId, setFavoritesId] = useState([]);
+
+  const [token, setToken] = useState(null);
   const router = useRouter();
 
   const userIsLoggedIn = !!token;
+
+  function addFavorite(id) {
+    setFavoritesId((curId) => [...curId, id]);
+  }
+
+  function removeFavorite(id) {
+    setFavoritesId((curId) => curId.filter((favId) => favId !== id));
+  }
 
   function logoutHandler() {
     setToken(null);
@@ -100,6 +113,9 @@ export function CartProvider({ children }) {
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
+    addFavorite,
+    removeFavorite,
+    ids: favoritesId,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

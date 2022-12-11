@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { Fragment } from "react";
-import Spinner from "../../../spinner/spinner";
 import classes from "./meal.module.css";
 
 export default function MealItem({ meal }) {

@@ -1,4 +1,4 @@
-const DUMMY_DATA = [
+export const DUMMY_DATA = [
   {
     id: "d1",
     name: "jollof rice & BBQ",

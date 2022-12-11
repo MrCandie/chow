@@ -1,7 +1,7 @@
 import classes from "./profile.module.css";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useRouter } from "next/router";
-import { RiShoppingCartLine } from "react-icons/ri";
+import { MdFavorite } from "react-icons/md";
 import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";
@@ -57,12 +57,12 @@ export default function Profile() {
             <h1>Account</h1>
             <hr />
             <div className={classes.items}>
-              <Link href="/cart">
+              <Link href="/favorite">
                 <div className={classes.item}>
                   <span>
-                    <RiShoppingCartLine />
+                    <MdFavorite />
                   </span>
-                  <h1>My orders</h1>
+                  <h1>My favorites</h1>
                 </div>
               </Link>
 

@@ -5,6 +5,8 @@ import { useContext } from "react";
 import { CartContext } from "../../../CartContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { MdFavorite } from "react-icons/md";
+import { MdFavoriteBorder } from "react-icons/md";
 
 export default function MealsDetails({ meals }) {
   const cart = useContext(CartContext);
@@ -13,6 +15,18 @@ export default function MealsDetails({ meals }) {
   }
 
   const quantity = cart.getProductQuantity(meals.id);
+
+  const mealIsFavorite = cart.ids.includes(meals.id);
+
+  function mealFavoriteHandler() {
+    if (mealIsFavorite) {
+      toast.success(`${meals.name} removed from favorites`);
+      return cart.removeFavorite(meals.id);
+    } else {
+      toast.success(`${meals.name} added to favorites`);
+      return cart.addFavorite(meals.id);
+    }
+  }
 
   return (
     <section className={classes.section}>
@@ -25,8 +39,13 @@ export default function MealsDetails({ meals }) {
           <h1>{meals.name}</h1>
         </div>
         <div className={classes.price}>
-          <s>N3,600</s>
-          <span>N{meals.price}</span>
+          <div className={classes.prices}>
+            <s>N3,600</s>
+            <span>N{meals.price}</span>
+          </div>
+          <p onClick={mealFavoriteHandler} className="btn">
+            {mealIsFavorite ? <MdFavorite /> : <MdFavoriteBorder />}
+          </p>
         </div>
         <div className={classes.cart}>
           <div className={classes.add}>

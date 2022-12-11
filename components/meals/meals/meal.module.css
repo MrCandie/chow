@@ -119,6 +119,9 @@
 }
 .price {
   text-align: center;
+  display: flex;
+  align-ital: center;
+  justify-content: space-between;
 }
 .price span {
   font-size: 1rem;
@@ -193,6 +196,12 @@
   right: 0;
   bottom: 0;
   background: rgba(255, 255, 255, 0.8);
+}
+
+.prices {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 @media (max-width: 850px) {

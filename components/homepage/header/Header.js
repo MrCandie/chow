@@ -7,6 +7,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { AiOutlineSearch } from "react-icons/ai";
 import { AiOutlineUser } from "react-icons/ai";
+import { MdFavorite } from "react-icons/md";
 
 export default function Header({ quantity }) {
   return (
@@ -27,7 +28,7 @@ export default function Header({ quantity }) {
               <Link href="/meals">Meals</Link>
             </li>
             <li>
-              <Link href="/cart">Orders</Link>
+              <Link href="/favorite">Favorites</Link>
             </li>
             <li>
               <Link href="/profile">Profile</Link>
@@ -70,9 +71,9 @@ export default function Header({ quantity }) {
               </li>
               <li>
                 <span>
-                  <AiOutlineShoppingCart />
+                  <MdFavorite />
                 </span>
-                <Link href="/cart">Orders</Link>
+                <Link href="/favorite">Favorites</Link>
               </li>
               <li>
                 <span>

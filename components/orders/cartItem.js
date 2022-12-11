@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function CartItem({ cartData, id, quantity }) {
   const cart = useContext(CartContext);
-  // const item = cart.items.map((item) => {
+
   const item = cartData.find((items) => {
     return items.id === id;
   });

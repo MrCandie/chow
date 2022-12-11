@@ -8,6 +8,7 @@ import Link from "next/link";
 
 export default function Cart({ cartData }) {
   const cart = useContext(CartContext);
+
   const router = useRouter();
   const cost = cart.getTotalCost() + 600;
 
