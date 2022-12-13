@@ -45,3 +45,32 @@ a {
   border: 1px solid red;
   cursor: pointer;
 }
+.center {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 4rem;
+}
+.center a {
+  background: green;
+  display: block;
+  padding: 1rem;
+  color: #fff;
+  width: 250px;
+  text-align: center;
+  border-radius: 0.4rem;
+  margin: 1rem auto;
+  transition: transform 0.2s ease-in;
+}
+.center a:active {
+  transform: scale(0.5);
+}
+
+.center .img {
+  width: 250px;
+  opacity: 0.7;
+  /* margin: 5rem auto; */
+  text-align: center;
+}
+.center .img img {
+  width: 100%;
+}

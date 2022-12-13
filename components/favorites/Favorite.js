@@ -19,9 +19,12 @@ export default function Favorite() {
         {favoriteMeals.length !== 0 ? (
           <MealItem meal={favoriteMeals} />
         ) : (
-          <Link href="/meals" className="center">
-            Add new favorites
-          </Link>
+          <div className="center">
+            <div className="img">
+              <img src="/images/box.png" />
+            </div>
+            <Link href="/meals">Add a favorite</Link>
+          </div>
         )}
       </div>
     </section>
