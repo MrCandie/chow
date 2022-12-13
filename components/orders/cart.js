@@ -2,12 +2,20 @@ import classes from "./cart.module.css";
 import { IoIosArrowBack } from "react-icons/io";
 import CartItem from "./cartItem";
 import { useRouter } from "next/router";
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { CartContext } from "../../CartContext";
 import Link from "next/link";
+import { getCart } from "../../util/http";
 
 export default function Cart({ cartData }) {
   const cart = useContext(CartContext);
+  useEffect(() => {
+    async function fetchCart() {
+      const item = await getCart();
+      cart.setCartItem(item);
+    }
+    fetchCart();
+  });
 
   const router = useRouter();
   const cost = cart.getTotalCost() + 600;

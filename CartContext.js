@@ -1,6 +1,13 @@
 import { useRouter } from "next/router";
 import { createContext, useState } from "react";
 import { getMeal } from "./store";
+import {
+  deleteCart,
+  deleteFavorite,
+  postCart,
+  storeFavorites,
+  updateCart,
+} from "./util/http";
 
 export const CartContext = createContext({
   items: [],
@@ -9,6 +16,8 @@ export const CartContext = createContext({
   removeOneFromCart: () => {},
   deleteFromCart: () => {},
   getTotalCost: () => {},
+  setCartItem: (item) => {},
+  setFavorites: (fav) => {},
   token: "",
   isLoggedIn: false,
   login: (token) => {},
@@ -27,12 +36,20 @@ export function CartProvider({ children }) {
 
   const userIsLoggedIn = !!token;
 
-  function addFavorite(id) {
-    setFavoritesId((curId) => [...curId, id]);
+  async function addFavorite(id) {
+    const favId = await storeFavorites({ id: id });
+
+    setFavoritesId((curId) => [...curId, { id: id, favId: favId }]);
   }
 
-  function removeFavorite(id) {
+  async function removeFavorite(id) {
+    const favId = favoritesId.find((fav) => fav.id === id).favId;
+    await deleteFavorite(favId);
     setFavoritesId((curId) => curId.filter((favId) => favId !== id));
+  }
+
+  function setFavorites(fav) {
+    setFavoritesId(fav);
   }
 
   function logoutHandler() {
@@ -55,11 +72,17 @@ export function CartProvider({ children }) {
     return quantity;
   }
 
-  function addOneToCart(id) {
+  async function addOneToCart(id) {
     const quantity = getProductQuantity(id);
     if (quantity === 0) {
-      setCartProduct((prev) => [...prev, { id: id, quantity: 1 }]);
+      const mealId = await postCart({ id: id, quantity: quantity + 1 });
+      setCartProduct((prev) => [
+        ...prev,
+        { id: id, quantity: 1, mealId: mealId },
+      ]);
     } else {
+      const mealId = cartProduct.find((item) => item.id === id).mealId;
+      await updateCart(mealId, { id: id, quantity: quantity + 1 });
       setCartProduct(
         cartProduct.map((product) =>
           product.id === id
@@ -70,12 +93,13 @@ export function CartProvider({ children }) {
     }
   }
 
-  function removeOneFromCart(id) {
+  async function removeOneFromCart(id) {
     const quantity = getProductQuantity(id);
-
+    const mealId = cartProduct.find((item) => item.id === id).mealId;
     if (quantity === 1) {
       deleteFromCart(id);
     } else {
+      await updateCart(mealId, { id: id, quantity: quantity - 1 });
       setCartProduct(
         cartProduct.map((prod) =>
           prod.id === id ? { ...prod, quantity: prod.quantity - 1 } : prod
@@ -84,7 +108,9 @@ export function CartProvider({ children }) {
     }
   }
 
-  function deleteFromCart(id) {
+  async function deleteFromCart(id) {
+    const mealId = cartProduct.find((item) => item.id === id).mealId;
+    await deleteCart(mealId);
     setCartProduct((cartProduct) =>
       cartProduct.filter((curProd) => curProd.id !== id)
     );
@@ -92,7 +118,7 @@ export function CartProvider({ children }) {
 
   function getTotalCost() {
     let deplaceCost = 0;
-    let chickenCost = 0;
+
     cartProduct.map((cart) => {
       const deplace = getMeal(cart.id);
 
@@ -102,6 +128,10 @@ export function CartProvider({ children }) {
     return +deplaceCost;
   }
 
+  function setCartItem(item) {
+    setCartProduct(item);
+  }
+
   const value = {
     items: cartProduct,
     addOneToCart,
@@ -109,12 +139,14 @@ export function CartProvider({ children }) {
     deleteFromCart,
     getTotalCost,
     getProductQuantity,
+    setCartItem,
     token: token,
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
     addFavorite,
     removeFavorite,
+    setFavorites,
     ids: favoritesId,
   };
 

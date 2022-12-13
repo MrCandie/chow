@@ -12,7 +12,11 @@ export default function CartItem({ cartData, id, quantity }) {
   const item = cartData.find((items) => {
     return items.id === id;
   });
-  // });
+
+  async function updateCartItem() {
+    cart.addOneToCart(id);
+    toast.success("One item added to cart", { autoClose: 300 });
+  }
 
   return (
     <section className={classes.cart}>
@@ -39,14 +43,10 @@ export default function CartItem({ cartData, id, quantity }) {
                 >
                   <AiOutlineMinus />
                 </span>
+
                 <span>{quantity}</span>
-                <span
-                  onClick={() => {
-                    cart.addOneToCart(item.id);
-                    toast.success("One item added to cart", { autoClose: 300 });
-                  }}
-                  className={classes.span}
-                >
+
+                <span onClick={updateCartItem} className={classes.span}>
                   <GrAdd />
                 </span>
               </div>

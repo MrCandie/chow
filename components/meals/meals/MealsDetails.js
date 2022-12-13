@@ -1,12 +1,13 @@
 import classes from "./meal.module.css";
 import { GrAdd } from "react-icons/gr";
 import { AiOutlineMinus } from "react-icons/ai";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "../../../CartContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MdFavorite } from "react-icons/md";
 import { MdFavoriteBorder } from "react-icons/md";
+import { getFavorites } from "../../../util/http";
 
 export default function MealsDetails({ meals }) {
   const cart = useContext(CartContext);
@@ -14,9 +15,19 @@ export default function MealsDetails({ meals }) {
     return <Spinner />;
   }
 
+  useEffect(() => {
+    async function fetchFav() {
+      const favList = await getFavorites();
+      cart.setFavorites(favList);
+    }
+    fetchFav();
+  }, [cart]);
+
   const quantity = cart.getProductQuantity(meals.id);
 
-  const mealIsFavorite = cart.ids.includes(meals.id);
+  const mealIsFav = cart.ids.map((item) => item.id);
+
+  const mealIsFavorite = mealIsFav.includes(meals.id);
 
   function mealFavoriteHandler() {
     if (mealIsFavorite) {
@@ -26,6 +37,16 @@ export default function MealsDetails({ meals }) {
       toast.success(`${meals.name} added to favorites`);
       return cart.addFavorite(meals.id);
     }
+  }
+
+  async function sendCartData() {
+    cart.addOneToCart(meals.id);
+    toast.success("One item added to cart", { autoClose: 300 });
+  }
+
+  async function removeCartItem() {
+    cart.removeOneFromCart(meals.id);
+    toast.warning("One Item removed from cart", { autoClose: 300 });
   }
 
   return (
@@ -49,32 +70,15 @@ export default function MealsDetails({ meals }) {
         </div>
         <div className={classes.cart}>
           <div className={classes.add}>
-            <span
-              onClick={() => {
-                cart.removeOneFromCart(meals.id);
-                toast.warning("One Item removed from cart", { autoClose: 300 });
-              }}
-            >
+            <span onClick={removeCartItem}>
               <AiOutlineMinus />
             </span>
             <span>{quantity}</span>
-            <span
-              onClick={() => {
-                cart.addOneToCart(meals.id);
-                toast.success("One item added to cart", { autoClose: 300 });
-              }}
-            >
+            <span onClick={sendCartData}>
               <GrAdd />
             </span>
           </div>
-          <button
-            onClick={() => {
-              cart.addOneToCart(meals.id);
-              toast.success("One item added to cart", { autoClose: 300 });
-            }}
-          >
-            Add to cart
-          </button>
+          <button onClick={sendCartData}>Add to cart</button>
         </div>
       </div>
       <ToastContainer position="top-center" autoClose={300} />

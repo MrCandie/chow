@@ -7,11 +7,10 @@ import Link from "next/link";
 
 export default function Favorite() {
   const favoritesCtx = useContext(CartContext);
-  //   const router = useRouter();
 
-  const favoriteMeals = DUMMY_DATA.filter((meal) =>
-    favoritesCtx.ids.includes(meal.id)
-  );
+  const favIds = favoritesCtx.ids.map((item) => item.id);
+
+  const favoriteMeals = DUMMY_DATA.filter((meal) => favIds.includes(meal.id));
 
   return (
     <section className={classes.section}>

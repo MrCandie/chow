@@ -3,7 +3,8 @@ import React, { Fragment, useContext } from "react";
 import { CartContext } from "../../CartContext";
 import Cart from "../../components/orders/cart";
 import Login from "../../components/Account/login";
-import { deplaceDummyData } from "../../store";
+import { deplaceData, deplaceDummyData } from "../../store";
+import { async } from "@firebase/util";
 
 export default function Carts() {
   const Chickensdata = deplaceDummyData();
@@ -23,3 +24,7 @@ export default function Carts() {
     </Fragment>
   );
 }
+
+// export async function getStaticProps() {
+//   const data = await deplaceData();
+// }
