@@ -38,27 +38,27 @@ export default function Index() {
   );
 }
 
-export async function getStaticProps(context) {
-  const { params } = context;
-  const kfcId = params.kfcId;
+// export async function getStaticProps(context) {
+//   const { params } = context;
+//   const kfcId = params.kfcId;
 
-  const data = await getkfc(kfcId);
+//   const data = await getkfc(kfcId);
 
-  return {
-    props: {
-      meals: data,
-    },
-  };
-}
+//   return {
+//     props: {
+//       meals: data,
+//     },
+//   };
+// }
 
-export async function getStaticPaths() {
-  return {
-    paths: [
-      { params: { kfcId: "k1" } },
-      { params: { kfcId: "k2" } },
-      { params: { kfcId: "k3" } },
-      { params: { kfcId: "k4" } },
-    ],
-    fallback: "blocking",
-  };
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: [
+//       { params: { kfcId: "k1" } },
+//       { params: { kfcId: "k2" } },
+//       { params: { kfcId: "k3" } },
+//       { params: { kfcId: "k4" } },
+//     ],
+//     fallback: "blocking",
+//   };
+// }
