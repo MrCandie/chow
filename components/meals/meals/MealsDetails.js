@@ -11,13 +11,14 @@ import { getFavorites } from "../../../util/http";
 
 export default function MealsDetails({ meals }) {
   const cart = useContext(CartContext);
+  const token = cart.token;
   if (!meals) {
     return <Spinner />;
   }
 
   useEffect(() => {
     async function fetchFav() {
-      const favList = await getFavorites();
+      const favList = await getFavorites(token);
       cart.setFavorites(favList);
     }
     fetchFav();
@@ -32,20 +33,20 @@ export default function MealsDetails({ meals }) {
   function mealFavoriteHandler() {
     if (mealIsFavorite) {
       toast.success(`${meals.name} removed from favorites`);
-      return cart.removeFavorite(meals.id);
+      return cart.removeFavorite(meals.id, token);
     } else {
       toast.success(`${meals.name} added to favorites`);
-      return cart.addFavorite(meals.id);
+      return cart.addFavorite(meals.id, token);
     }
   }
 
   async function sendCartData() {
-    cart.addOneToCart(meals.id);
+    cart.addOneToCart(meals.id, token);
     toast.success("One item added to cart", { autoClose: 300 });
   }
 
   async function removeCartItem() {
-    cart.removeOneFromCart(meals.id);
+    cart.removeOneFromCart(meals.id, token);
     toast.warning("One Item removed from cart", { autoClose: 300 });
   }
 

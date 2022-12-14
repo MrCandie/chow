@@ -135,29 +135,41 @@ const DUMMY_STORES = [
   },
 ];
 
+/////////////////////////////////////
+//GET RESTAURANTS
 export function dummyStores() {
   return DUMMY_STORES;
 }
 
+/////////////////////////////////////
+//GET MEALS DETAILS
 export function getDeplaceMeal(id) {
   return DUMMY_DATA.find((item) => item.id === id);
 }
 
+/////////////////////////////////////
+//GET MEALS DETAILS
 export function getMeal(id) {
   return DUMMY_DATA.find((item) => item.id === id);
 }
 
+/////////////////////////////////////
+//ALL MEALS
 export function deplaceDummyData() {
   return DUMMY_DATA;
 }
 
+/////////////////////////////////////
+//RECOMMENDED MEALS
 export function recommendedData() {
   return DUMMY_DATA.filter((item) => item.recommended);
 }
 
-export async function storeData() {
+/////////////////////////////////////
+//RESTAURANTS DETAILS
+export async function storeData(token) {
   const res = await fetch(
-    "https://chow-d2355-default-rtdb.firebaseio.com/chow.json"
+    `https://chow-d2355-default-rtdb.firebaseio.com/chow.json?auth=${token}`
   );
   const data = await res.json();
   const loadedData = [];
@@ -170,9 +182,11 @@ export async function storeData() {
   return loadedData;
 }
 
-export async function chickenData() {
+/////////////////////////////////////
+//CHICKEN REPUBLIC MEALS
+export async function chickenData(token) {
   const res = await fetch(
-    "https://chow-d2355-default-rtdb.firebaseio.com/chicken.json"
+    `https://chow-d2355-default-rtdb.firebaseio.com/chicken.json?auth=${token}`
   );
   const data = await res.json();
 
@@ -186,9 +200,11 @@ export async function chickenData() {
   return chickenData;
 }
 
-export async function kfcData() {
+/////////////////////////////////////
+//KFC MEALS
+export async function kfcData(token) {
   const res = await fetch(
-    "https://chow-d2355-default-rtdb.firebaseio.com/kfc.json"
+    `https://chow-d2355-default-rtdb.firebaseio.com/kfc.json?auth=${token}`
   );
   const data = await res.json();
 
@@ -202,9 +218,11 @@ export async function kfcData() {
   return kfcData;
 }
 
-export async function dominosData() {
+/////////////////////////////////////
+//DOMINOS MEALS
+export async function dominosData(token) {
   const res = await fetch(
-    "https://chow-d2355-default-rtdb.firebaseio.com/dominos.json"
+    `https://chow-d2355-default-rtdb.firebaseio.com/dominos.json?auth=${token}`
   );
   const data = await res.json();
 
@@ -218,27 +236,35 @@ export async function dominosData() {
   return dominosData;
 }
 
-export async function getChicken(id) {
-  const chicken = await chickenData();
+/////////////////////////////////////
+//CHICKEN REPUBLIC MEAL DETAIL
+export async function getChicken(id, token) {
+  const chicken = await chickenData(token);
 
   return chicken.find((item) => item.id === id);
 }
 
-export async function getkfc(id) {
-  const kfc = await kfcData();
+/////////////////////////////////////
+//KFC MEAL DETAIL
+export async function getkfc(id, token) {
+  const kfc = await kfcData(token);
 
   return kfc.find((item) => item.id === id);
 }
 
-export async function getdominos(id) {
-  const dominos = await dominosData();
+/////////////////////////////////////
+//DOMINOS MEAL DETAIL
+export async function getdominos(id, token) {
+  const dominos = await dominosData(token);
 
   return dominos.find((item) => item.id === id);
 }
 
-export async function deplaceData() {
+/////////////////////////////////////
+//DEPLACE ALL MEALS
+export async function deplaceData(token) {
   const res = await fetch(
-    "https://chow-d2355-default-rtdb.firebaseio.com/deplace.json"
+    `https://chow-d2355-default-rtdb.firebaseio.com/deplace.json?auth=${token}`
   );
   const data = await res.json();
   const loadedData = [];
@@ -252,8 +278,10 @@ export async function deplaceData() {
   return loadedData;
 }
 
-export async function getDeplace(id) {
-  const deplace = await deplaceData();
+/////////////////////////////////////
+//DEPLACE MEAL DETAIL
+export async function getDeplace(id, token) {
+  const deplace = await deplaceData(token);
 
   return deplace.find((item) => item.id === id);
 }

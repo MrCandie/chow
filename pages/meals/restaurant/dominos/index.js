@@ -1,14 +1,28 @@
 import Head from "next/head";
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { CartContext } from "../../../../CartContext";
 import Header from "../../../../components/homepage/header/Header";
 import Simis from "../../../../components/meals/meals/Simi";
 import { dominosData, storeData } from "../../../../store";
 
-export default function Index({ meal, data }) {
+export default function Index() {
   const cart = useContext(CartContext);
+  const [meal, setMeal] = useState([]);
+  const [data, setData] = useState([]);
   const name = "dominos pizza";
+  const token = cart.token;
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await dominosData(token);
+      const restaurantData = await storeData(token);
+      setMeal(data);
+      setData(restaurantData);
+    }
+    fetchData();
+  }, [meal, data]);
+
   return (
     <Fragment>
       <Head>

@@ -1,26 +1,28 @@
 import Head from "next/head";
-import React, { Fragment, useContext, useState } from "react";
+import { useRouter } from "next/router";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { CartContext } from "../../../../CartContext";
 import Header from "../../../../components/homepage/header/Header";
 import MealsDetails from "../../../../components/meals/meals/MealsDetails";
 import { chickenData } from "../../../../store";
 
-export default function ChickenDetails({ food }) {
+export default function ChickenDetails() {
   const cart = useContext(CartContext);
-  const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
   const [meal, setMeal] = useState([]);
-  fetch("https://chow-d2355-default-rtdb.firebaseio.com/chicken.json")
-    .then((res) => res.json())
-    .then((data) => {
-      const loadedData = [];
-      for (const key in data) {
-        loadedData.push({
-          id: key,
-          ...data[key],
-        });
-      }
-      setMeal(loadedData);
-    });
+  const router = useRouter();
+
+  const id = router.query.chickenId;
+  const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
+  const token = cart.token;
+  useEffect(() => {
+    async function fetchData() {
+      const data = await chickenData(token);
+
+      const meal = data.find((item) => item.id === id);
+      setMeal(meal);
+    }
+    fetchData();
+  }, [meal]);
 
   return (
     <Fragment>
@@ -32,32 +34,32 @@ export default function ChickenDetails({ food }) {
         />
       </Head>
       <Header quantity={quantity} />
-      <MealsDetails meals={food} />
+      <MealsDetails meals={meal} />
     </Fragment>
   );
 }
 
-export async function getStaticProps(context) {
-  const { params } = context;
-  const chickenId = params.chickenId;
+// export async function getStaticProps(context) {
+//   const { params } = context;
+//   const chickenId = params.chickenId;
 
-  const data = await chickenData();
+//   const data = await chickenData();
 
-  const meal = data.find((item) => item.id === chickenId);
+//   const meal = data.find((item) => item.id === chickenId);
 
-  return {
-    props: { food: meal },
-  };
-}
+//   return {
+//     props: { food: meal },
+//   };
+// }
 
-export async function getStaticPaths() {
-  return {
-    paths: [
-      { params: { chickenId: "ch1" } },
-      { params: { chickenId: "ch2" } },
-      { params: { chickenId: "ch3" } },
-      { params: { chickenId: "ch4" } },
-    ],
-    fallback: false,
-  };
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: [
+//       { params: { chickenId: "ch1" } },
+//       { params: { chickenId: "ch2" } },
+//       { params: { chickenId: "ch3" } },
+//       { params: { chickenId: "ch4" } },
+//     ],
+//     fallback: false,
+//   };
+// }

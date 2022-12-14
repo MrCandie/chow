@@ -1,13 +1,28 @@
 import Head from "next/head";
-import React, { Fragment, useContext } from "react";
+import { useRouter } from "next/router";
+import React, { Fragment, useContext, useState, useEffect } from "react";
 import { CartContext } from "../../../../CartContext";
 import Header from "../../../../components/homepage/header/Header";
 import MealsDetails from "../../../../components/meals/meals/MealsDetails";
 import { getdominos } from "../../../../store";
 
-export default function Index({ food }) {
+export default function Index() {
   const cart = useContext(CartContext);
+  const router = useRouter();
+  const [meal, setMeal] = useState([]);
+  const token = cart.token;
+  const id = router.query.deplaceId;
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getdominos(id, token);
+
+      setMeal(data);
+    }
+    fetchData();
+  }, [meal]);
+
   return (
     <Fragment>
       <Head>
@@ -18,30 +33,30 @@ export default function Index({ food }) {
         />
       </Head>
       <Header quantity={quantity} />
-      <MealsDetails meals={food} />
+      <MealsDetails meals={meal} />
     </Fragment>
   );
 }
 
-export async function getStaticProps(context) {
-  const { params } = context;
-  const dominosId = params.dominos;
+// export async function getStaticProps(context) {
+//   const { params } = context;
+//   const dominosId = params.dominos;
 
-  const meal = await getdominos(dominosId);
+//   const meal = await getdominos(dominosId);
 
-  return {
-    props: { food: meal },
-  };
-}
+//   return {
+//     props: { food: meal },
+//   };
+// }
 
-export async function getStaticPaths() {
-  return {
-    paths: [
-      { params: { dominos: "do1" } },
-      { params: { dominos: "do2" } },
-      { params: { dominos: "do3" } },
-      { params: { dominos: "do4" } },
-    ],
-    fallback: "blocking",
-  };
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: [
+//       { params: { dominos: "do1" } },
+//       { params: { dominos: "do2" } },
+//       { params: { dominos: "do3" } },
+//       { params: { dominos: "do4" } },
+//     ],
+//     fallback: "blocking",
+//   };
+// }

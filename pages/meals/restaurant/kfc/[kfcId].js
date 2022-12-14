@@ -1,13 +1,28 @@
 import Head from "next/head";
-import React, { Fragment, useContext } from "react";
+import { useRouter } from "next/router";
+import React, { Fragment, useContext, useState, useEffect } from "react";
 import { CartContext } from "../../../../CartContext";
 import Header from "../../../../components/homepage/header/Header";
 import MealsDetails from "../../../../components/meals/meals/MealsDetails";
 import { getkfc } from "../../../../store";
 
-export default function Index({ meals }) {
+export default function Index() {
   const cart = useContext(CartContext);
+  const router = useRouter();
+  const [meal, setMeal] = useState([]);
+  const token = cart.token;
+  const id = router.query.deplaceId;
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getkfc(id, token);
+
+      setMeal(data);
+    }
+    fetchData();
+  }, [meal]);
+
   return (
     <Fragment>
       <Head>
@@ -18,7 +33,7 @@ export default function Index({ meals }) {
         />
       </Head>
       <Header quantity={quantity} />
-      <MealsDetails meals={meals} />;
+      <MealsDetails meals={meal} />;
     </Fragment>
   );
 }

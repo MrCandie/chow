@@ -9,9 +9,10 @@ import { getCart } from "../../util/http";
 
 export default function Cart({ cartData }) {
   const cart = useContext(CartContext);
+  const token = cart.token;
   useEffect(() => {
     async function fetchCart() {
-      const item = await getCart();
+      const item = await getCart(token);
       cart.setCartItem(item);
     }
     fetchCart();

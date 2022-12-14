@@ -1,13 +1,22 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import Meal from "../../components/meals/meals/Meals";
 import Header from "../../components/homepage/header/Header";
 import { storeData } from "../../store";
 import { CartContext } from "../../CartContext";
 import Head from "next/head";
 
-export default function Meals({ meal }) {
+export default function Meals() {
   const cart = useContext(CartContext);
+  const [meal, setMeal] = useState([]);
+  const token = cart.token;
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
+  useEffect(() => {
+    async function fetchData() {
+      const loadedData = await storeData(token);
+      setMeal(loadedData);
+    }
+    fetchData();
+  }, [meal]);
   return (
     <Fragment>
       <Head>
@@ -23,12 +32,12 @@ export default function Meals({ meal }) {
   );
 }
 
-export async function getStaticProps() {
-  const loadedData = await storeData();
+// export async function getStaticProps() {
+//   const loadedData = await storeData();
 
-  return {
-    props: {
-      meal: loadedData,
-    },
-  };
-}
+//   return {
+//     props: {
+//       meal: loadedData,
+//     },
+//   };
+// }

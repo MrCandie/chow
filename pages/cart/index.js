@@ -4,7 +4,6 @@ import { CartContext } from "../../CartContext";
 import Cart from "../../components/orders/cart";
 import Login from "../../components/Account/login";
 import { deplaceData, deplaceDummyData } from "../../store";
-import { async } from "@firebase/util";
 
 export default function Carts() {
   const Chickensdata = deplaceDummyData();

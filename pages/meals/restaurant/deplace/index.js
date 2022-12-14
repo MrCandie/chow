@@ -1,14 +1,28 @@
 import Head from "next/head";
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { CartContext } from "../../../../CartContext";
 import Header from "../../../../components/homepage/header/Header";
 import Simis from "../../../../components/meals/meals/Simi";
 import { deplaceData, storeData } from "../../../../store";
 
-export default function Simi({ meal, data }) {
+export default function Simi() {
   const cart = useContext(CartContext);
+  const [meal, setMeal] = useState([]);
+  const [data, setData] = useState([]);
+  const token = cart.token;
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
   const name = "de place";
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await deplaceData(token);
+      const restaurantData = await storeData(token);
+      setMeal(data);
+      setData(restaurantData);
+    }
+    fetchData();
+  }, [meal, data]);
+
   return (
     <Fragment>
       <Head>
@@ -24,14 +38,14 @@ export default function Simi({ meal, data }) {
   );
 }
 
-export async function getStaticProps() {
-  const data = await deplaceData();
-  const restaurantData = await storeData();
+// export async function getStaticProps() {
+//   const data = await deplaceData();
+//   const restaurantData = await storeData();
 
-  return {
-    props: {
-      meal: data,
-      data: restaurantData,
-    },
-  };
-}
+//   return {
+//     props: {
+//       meal: data,
+//       data: restaurantData,
+//     },
+//   };
+// }

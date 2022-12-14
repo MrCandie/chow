@@ -8,13 +8,14 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function CartItem({ cartData, id, quantity }) {
   const cart = useContext(CartContext);
+  const token = cart.token;
 
   const item = cartData.find((items) => {
     return items.id === id;
   });
 
   async function updateCartItem() {
-    cart.addOneToCart(id);
+    cart.addOneToCart(id, token);
     toast.success("One item added to cart", { autoClose: 300 });
   }
 
@@ -34,7 +35,7 @@ export default function CartItem({ cartData, id, quantity }) {
               <div className={classes.control}>
                 <span
                   onClick={() => {
-                    cart.removeOneFromCart(item.id);
+                    cart.removeOneFromCart(item.id, token);
                     toast.warning("One Item removed from cart", {
                       autoClose: 300,
                     });

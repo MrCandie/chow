@@ -36,15 +36,15 @@ export function CartProvider({ children }) {
 
   const userIsLoggedIn = !!token;
 
-  async function addFavorite(id) {
-    const favId = await storeFavorites({ id: id });
+  async function addFavorite(id, token) {
+    const favId = await storeFavorites({ id: id }, token);
 
     setFavoritesId((curId) => [...curId, { id: id, favId: favId }]);
   }
 
-  async function removeFavorite(id) {
+  async function removeFavorite(id, token) {
     const favId = favoritesId.find((fav) => fav.id === id).favId;
-    await deleteFavorite(favId);
+    await deleteFavorite(favId, token);
     setFavoritesId((curId) => curId.filter((favId) => favId !== id));
   }
 
@@ -72,17 +72,17 @@ export function CartProvider({ children }) {
     return quantity;
   }
 
-  async function addOneToCart(id) {
+  async function addOneToCart(id, token) {
     const quantity = getProductQuantity(id);
     if (quantity === 0) {
-      const mealId = await postCart({ id: id, quantity: quantity + 1 });
+      const mealId = await postCart({ id: id, quantity: quantity + 1 }, token);
       setCartProduct((prev) => [
         ...prev,
         { id: id, quantity: 1, mealId: mealId },
       ]);
     } else {
       const mealId = cartProduct.find((item) => item.id === id).mealId;
-      await updateCart(mealId, { id: id, quantity: quantity + 1 });
+      await updateCart(mealId, { id: id, quantity: quantity + 1 }, token);
       setCartProduct(
         cartProduct.map((product) =>
           product.id === id
@@ -93,13 +93,13 @@ export function CartProvider({ children }) {
     }
   }
 
-  async function removeOneFromCart(id) {
+  async function removeOneFromCart(id, token) {
     const quantity = getProductQuantity(id);
     const mealId = cartProduct.find((item) => item.id === id).mealId;
     if (quantity === 1) {
-      deleteFromCart(id);
+      deleteFromCart(id, token);
     } else {
-      await updateCart(mealId, { id: id, quantity: quantity - 1 });
+      await updateCart(mealId, { id: id, quantity: quantity - 1 }, token);
       setCartProduct(
         cartProduct.map((prod) =>
           prod.id === id ? { ...prod, quantity: prod.quantity - 1 } : prod
@@ -108,9 +108,9 @@ export function CartProvider({ children }) {
     }
   }
 
-  async function deleteFromCart(id) {
+  async function deleteFromCart(id, token) {
     const mealId = cartProduct.find((item) => item.id === id).mealId;
-    await deleteCart(mealId);
+    await deleteCart(mealId, token);
     setCartProduct((cartProduct) =>
       cartProduct.filter((curProd) => curProd.id !== id)
     );

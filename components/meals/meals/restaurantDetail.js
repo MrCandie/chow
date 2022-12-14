@@ -5,6 +5,9 @@ import { MdDeliveryDining } from "react-icons/md";
 import { Fragment } from "react";
 
 export default function RestaurantDetail({ data, name }) {
+  if (data.length === 0) {
+    return <p>Loading...</p>;
+  }
   const restaurant = data.find((item) => item.name === name);
 
   return (

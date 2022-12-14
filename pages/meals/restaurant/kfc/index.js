@@ -1,14 +1,27 @@
 import Head from "next/head";
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { CartContext } from "../../../../CartContext";
 import Header from "../../../../components/homepage/header/Header";
 import Simis from "../../../../components/meals/meals/Simi";
 import { kfcData, storeData } from "../../../../store";
 
-export default function KFC({ meal, data }) {
+export default function KFC() {
   const cart = useContext(CartContext);
+  const [meal, setMeal] = useState([]);
+  const [data, setData] = useState([]);
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
   const name = "KFC";
+  const token = cart.token;
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await kfcData();
+      const restaurantData = await storeData(token);
+      setMeal(data);
+      setData(restaurantData);
+    }
+    fetchData();
+  }, [meal, data]);
 
   return (
     <Fragment>
@@ -25,14 +38,14 @@ export default function KFC({ meal, data }) {
   );
 }
 
-export async function getStaticProps() {
-  const data = await kfcData();
-  const restaurantData = await storeData();
+// export async function getStaticProps() {
+//   const data = await kfcData();
+//   const restaurantData = await storeData();
 
-  return {
-    props: {
-      meal: data,
-      data: restaurantData,
-    },
-  };
-}
+//   return {
+//     props: {
+//       meal: data,
+//       data: restaurantData,
+//     },
+//   };
+// }
