@@ -10,10 +10,10 @@ export default function Index() {
   const [meal, setMeal] = useState([]);
   const [data, setData] = useState([]);
   const name = "dominos pizza";
-  const token = cart.token;
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     async function fetchData() {
       const data = await dominosData(token);
       const restaurantData = await storeData(token);

@@ -10,11 +10,11 @@ export default function Index() {
   const cart = useContext(CartContext);
   const router = useRouter();
   const [meal, setMeal] = useState([]);
-  const token = cart.token;
   const id = router.query.deplaceId;
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     async function fetchData() {
       const data = await getkfc(id, token);
 

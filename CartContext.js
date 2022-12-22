@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { getMeal } from "./store";
 import {
   deleteCart,
@@ -30,15 +30,21 @@ export const CartContext = createContext({
 export function CartProvider({ children }) {
   const [cartProduct, setCartProduct] = useState([]);
   const [favoritesId, setFavoritesId] = useState([]);
+  const [storedToken, setStoredToken] = useState("");
 
   const [token, setToken] = useState(null);
   const router = useRouter();
+  useEffect(() => {
+    const initialToken = localStorage.getItem("token");
+    // setStoredToken(initialToken);
+    setToken(initialToken);
+    console.log(token);
+  }, []);
 
   const userIsLoggedIn = !!token;
 
   async function addFavorite(id, token) {
     const favId = await storeFavorites({ id: id }, token);
-
     setFavoritesId((curId) => [...curId, { id: id, favId: favId }]);
   }
 

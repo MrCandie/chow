@@ -6,14 +6,19 @@ import { Fragment, useContext, useEffect } from "react";
 import { CartContext } from "../../CartContext";
 import Link from "next/link";
 import { getCart } from "../../util/http";
+import { toast } from "react-toastify";
 
 export default function Cart({ cartData }) {
   const cart = useContext(CartContext);
   const token = cart.token;
   useEffect(() => {
     async function fetchCart() {
-      const item = await getCart(token);
-      cart.setCartItem(item);
+      try {
+        const item = await getCart(token);
+        cart.setCartItem(item);
+      } catch (error) {
+        toast.error("Something went wrong", error.message);
+      }
     }
     fetchCart();
   });
@@ -64,7 +69,7 @@ export default function Cart({ cartData }) {
             </div>
             <hr />
             <button onClick={() => router.push("/checkout")}>
-              Proceed To Payment
+              Place Order Now
             </button>
           </div>
         </Fragment>

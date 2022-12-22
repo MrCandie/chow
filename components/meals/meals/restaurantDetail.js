@@ -3,40 +3,96 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
 import { MdDeliveryDining } from "react-icons/md";
 import { Fragment } from "react";
+import { BiTimeFive } from "react-icons/bi";
+import { GoVerified } from "react-icons/go";
+import { MdOutlineDeliveryDining } from "react-icons/md";
+import { AiFillStar } from "react-icons/ai";
+import { GoLocation } from "react-icons/go";
+import Spinner from "../../../spinner/spinner";
 
 export default function RestaurantDetail({ data, name }) {
   if (data.length === 0) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
   const restaurant = data.find((item) => item.name === name);
 
   return (
     <section className={classes.section}>
-      <Fragment>
-        <h1>{restaurant.name}</h1>
-        <div className={classes.rating}>
-          <div className={classes.imgs}>
-            <div className={classes.black}></div>
-            <img src={`../../..${restaurant.image}`} />
+      {false && (
+        <Fragment>
+          <h1>{restaurant.name}</h1>
+          <div className={classes.rating}>
+            <div className={classes.imgs}>
+              <div></div>
+              <img src={`../../..${restaurant.image}`} />
+            </div>
+            <span className={classes.rate}>
+              <span>
+                <AiOutlineClockCircle />
+              </span>
+              20-30m
+            </span>
+            <span className={classes.rate}>
+              <span>
+                <AiFillLike />
+              </span>
+              90%
+            </span>
+            <span className={classes.rate}>
+              <span>
+                <MdDeliveryDining />
+              </span>
+              90%
+            </span>
           </div>
-          <span className={classes.rate}>
+        </Fragment>
+      )}
+
+      <Fragment>
+        <div className={classes.imgs}>
+          <img src={restaurant.img} />
+        </div>
+        <div className={classes.content}>
+          <img className={classes.logo_img} src={restaurant.image} />
+          <div className={classes.desc}>
+            <div className={classes.descs}>
+              <h1>
+                {restaurant.name}
+                <span>
+                  <GoVerified />
+                </span>
+              </h1>
+              <h2>
+                <span>
+                  <BiTimeFive />
+                </span>
+                15-20mins
+              </h2>
+            </div>
+
+            <div className={classes.delivery}>
+              <p>
+                <span>
+                  <MdOutlineDeliveryDining />
+                </span>
+                Free Delivery On All Meals
+              </p>
+              <h2>
+                <span>
+                  <AiFillStar />
+                </span>
+                4.5
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div className={classes.address}>
+          <address>
             <span>
-              <AiOutlineClockCircle />
+              <GoLocation />
             </span>
-            20-30m
-          </span>
-          <span className={classes.rate}>
-            <span>
-              <AiFillLike />
-            </span>
-            90%
-          </span>
-          <span className={classes.rate}>
-            <span>
-              <MdDeliveryDining />
-            </span>
-            90%
-          </span>
+            124, johnson road, adesanya, mushin lagos
+          </address>
         </div>
       </Fragment>
     </section>

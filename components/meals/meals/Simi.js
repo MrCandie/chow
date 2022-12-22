@@ -6,6 +6,8 @@ export default function Simis({ meal, data, name }) {
   return (
     <section className={classes.section}>
       <RestaurantDetail name={name} data={data} />
+      <h1 className={classes.title}>Menu</h1>
+      <hr />
       <div className={classes.mealcontainer}>
         <MealItem meal={meal} />
       </div>

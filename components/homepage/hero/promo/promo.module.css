@@ -53,7 +53,7 @@
 }
 
 .image {
-  width: 30%;
+  width: 150px;
 }
 .image img {
   height: 150px;
@@ -67,6 +67,9 @@
 @media (max-width: 850px) {
   .section {
     margin: 3rem auto -1rem;
+  }
+  .image {
+    width: 70px;
   }
   .image img {
     height: 70px;

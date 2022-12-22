@@ -9,11 +9,12 @@ export default function Simi() {
   const cart = useContext(CartContext);
   const [meal, setMeal] = useState([]);
   const [data, setData] = useState([]);
-  const token = cart.token;
+
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
   const name = "de place";
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     async function fetchData() {
       const data = await deplaceData(token);
       const restaurantData = await storeData(token);

@@ -18,8 +18,13 @@ export default function MealsDetails({ meals }) {
 
   useEffect(() => {
     async function fetchFav() {
-      const favList = await getFavorites(token);
-      cart.setFavorites(favList);
+      try {
+        const favList = await getFavorites(token);
+        cart.setFavorites(favList);
+      } catch (error) {
+        toast.error("Something went wrong!...", error.message);
+        return;
+      }
     }
     fetchFav();
   }, [cart]);

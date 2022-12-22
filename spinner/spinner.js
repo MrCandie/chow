@@ -1,19 +1,18 @@
 import Head from "next/head";
 import React, { Fragment } from "react";
 import classes from "./spinner.module.css";
+import { ImSpinner3 } from "react-icons/im";
 
 export default function Spinner() {
   return (
     <Fragment>
       <Head>
         <title></title>
-        <script
-          src="https://kit.fontawesome.com/ea3bde8322.js"
-          crossorigin="anonymous"
-        ></script>
       </Head>
       <div className={classes.spinner}>
-        <i className="fa-solid fa-spinner"></i>
+        <span>
+          <ImSpinner3 />
+        </span>
       </div>
     </Fragment>
   );

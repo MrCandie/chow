@@ -11,9 +11,9 @@ export default function KFC() {
   const [data, setData] = useState([]);
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
   const name = "KFC";
-  const token = cart.token;
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     async function fetchData() {
       const data = await kfcData();
       const restaurantData = await storeData(token);

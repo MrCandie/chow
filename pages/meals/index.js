@@ -8,9 +8,10 @@ import Head from "next/head";
 export default function Meals() {
   const cart = useContext(CartContext);
   const [meal, setMeal] = useState([]);
-  const token = cart.token;
+
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
   useEffect(() => {
+    const token = localStorage.getItem("token");
     async function fetchData() {
       const loadedData = await storeData(token);
       setMeal(loadedData);

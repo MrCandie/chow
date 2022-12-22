@@ -10,10 +10,11 @@ export default function Chicken() {
   const [meal, setMeal] = useState([]);
   const [data, setData] = useState([]);
   const name = "chicken republic";
-  const token = cart.token;
+
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     async function fetchData() {
       const chicken = await chickenData(token);
       const restaurantData = await storeData(token);

@@ -53,9 +53,141 @@
   border: none;
   transition: transform ease-in 0.2s;
   margin: 1rem 0;
+  text-transform: capitalize;
+  font-size: 1rem;
+  cursor: pointer;
 }
 .section form button:active {
   transform: scale(0.5);
+}
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.button {
+  flex: 1;
+  padding: 1rem;
+  color: #000;
+  text-transform: capitalize;
+  font-weight: bold;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+.active {
+  flex: 1;
+  padding: 1rem;
+  color: #000;
+  text-transform: capitalize;
+  font-weight: bold;
+  border: none;
+  border-bottom: 2px solid green;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+.delivery {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+.delivery h1,
+.h1 {
+  text-align: start;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #333;
+  text-transform: capitalize;
+}
+.address {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border: 2px solid green;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  margin: 1rem 0;
+}
+.address span {
+  display: flex;
+  align-items: center;
+  color: green;
+  font-size: 1.1rem;
+}
+.span {
+  background: #eee;
+  padding: 0.6rem;
+  border-radius: 50%;
+}
+.address p {
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+.add {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+.add span {
+  display: flex;
+  align-items: center;
+  color: green;
+  font-size: 1.1rem;
+}
+.add p {
+  text-transform: capitalize;
+  font-size: 1rem;
+  color: green;
+}
+.recepient {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.buttons {
+  flex: 1;
+  padding: 1rem;
+  color: #000;
+  text-transform: capitalize;
+  font-weight: bold;
+  border: 2px solid #ccc;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+}
+.activeButton {
+  flex: 1;
+  padding: 1rem;
+  color: #000;
+  text-transform: capitalize;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  border: 2px solid green;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+.paymentButton {
+  margin: 3rem 0;
+  width: 100%;
+}
+.paymentButton button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  background: green;
+  font-size: 1rem;
+  text-transform: capitalize;
+  cursor: pointer;
 }
 
 @media (max-width: 850px) {

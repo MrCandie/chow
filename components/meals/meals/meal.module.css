@@ -3,6 +3,19 @@
   padding: 1rem 0;
   margin: 4.5rem auto 3rem;
 }
+.title {
+  text-align: start;
+  display: flex;
+  align-items: flex-start;
+  font-size: 1.2rem;
+  color: #333;
+  /* justify-content: center; */
+}
+.section hr {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 2rem;
+}
 .section h1 {
   margin: 1rem 0;
   text-align: center;
@@ -16,6 +29,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .restaurant {
   width: 30%;
   background: #fff;
@@ -44,12 +58,38 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 .desc h1 {
   font-size: 1.5rem;
   text-transform: capitalize;
   text-align: start;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.desc h1 span {
+  color: blue;
+  display: flex;
+  align-items: center;
+}
+.address {
+  margin: 0.5rem 0;
+}
+.address address {
+  font-size: 1rem;
+  text-transform: capitalize;
+  text-align: start;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.address span {
+  color: green;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
 }
 .delivery {
   margin-top: -1rem;
@@ -57,20 +97,48 @@
   align-items: center;
   justify-content: space-between;
 }
-.delivery h2 {
+.descs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.descs h2 {
   font-size: 1rem;
   font-weight: normal;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
+.delivery h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.descs h2 span {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  color: green;
+}
 .delivery h2 span {
   font-size: 1.2rem;
   display: flex;
   align-items: center;
+  color: gold;
 }
 .delivery p {
   font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.delivery p span {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  color: green;
 }
 .simi {
   width: 30%;
@@ -88,6 +156,8 @@
 }
 .content {
   /* text-align: center; */
+  position: relative;
+  /* margin-top: 1rem; */
 }
 .contents h1 {
   font-size: 1.5rem;
@@ -170,13 +240,18 @@
   position: relative;
 }
 .imgs {
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
 }
 .imgs img {
   width: 100%;
-  height: 100px;
-  object-fit: contain;
+  height: 150px;
+  object-fit: cover;
+}
+.logo_img {
+  position: absolute;
+  top: -27%;
+  left: 2%;
 }
 .rate {
   z-index: 1;
@@ -215,13 +290,13 @@
     width: 100%;
   }
   .desc h1 {
-    font-size: 0.8rem;
+    font-size: 1.1rem;
   }
   .delivery p {
-    font-size: 0.6rem;
+    font-size: 1rem;
   }
   .delivery h2 {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   .content h1 {
     font-size: 1rem;

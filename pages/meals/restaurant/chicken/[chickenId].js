@@ -13,8 +13,9 @@ export default function ChickenDetails() {
 
   const id = router.query.chickenId;
   const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
-  const token = cart.token;
+
   useEffect(() => {
+    const token = localStorage.getItem("token");
     async function fetchData() {
       const data = await chickenData(token);
 

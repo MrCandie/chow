@@ -8,9 +8,19 @@ export default function Success() {
       <span>
         <AiFillCheckCircle />
       </span>
-      <h1>Your order was successful.</h1>
-      <h1>Your delivery will arrive in 30minutes</h1>
-      <Link href="/">Back to home</Link>
+      <h1 className={classes.h1}>order placed successfully</h1>
+      <p>
+        your food order has been placed successfully, the restaurant will
+        confirm your order and have it delivered in no time
+      </p>
+      <div className={classes.action}>
+        <Link className={classes.track} href="/">
+          track order
+        </Link>
+        <Link className={classes.home} href="/">
+          Back to home
+        </Link>
+      </div>
     </section>
   );
 }
