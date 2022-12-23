@@ -21,7 +21,6 @@ export default function MealItem({ meal }) {
         >
           <div className={classes.image}>
             <img src={`../../..${item.images}`} />
-            <span></span>
           </div>
           <div className={classes.contents}>
             <h1>{item.name}</h1>
