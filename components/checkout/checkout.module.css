@@ -11,17 +11,20 @@
   border: none;
   border-bottom: 1px solid #ccc;
 }
+.section form {
+  margin: 2rem 0;
+}
 
 .details {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin: 0.7rem 0;
+  margin: 1rem 0;
 }
 .details label {
   font-size: 1rem;
-  font-weight: bold;
-  color: green;
+  font-weight: 500;
+  color: #333;
   text-transform: capitalize;
 }
 .details input,
@@ -106,8 +109,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
-  border: 2px solid green;
+  gap: 2rem;
+  border: 2px solid #8fef8f;
   padding: 1rem;
   border-radius: 0.4rem;
   margin: 1rem 0;
@@ -125,7 +128,8 @@
 }
 .address p {
   text-transform: capitalize;
-  font-size: 1rem;
+  font-size: 0.8rem;
+  flex: 1;
 }
 .add {
   display: flex;

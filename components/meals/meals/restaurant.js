@@ -2,6 +2,8 @@ import classes from "./meal.module.css";
 import { BiTimeFive } from "react-icons/bi";
 import { GoVerified } from "react-icons/go";
 import { useRouter } from "next/router";
+import { AiFillStar } from "react-icons/ai";
+import { GrFavorite } from "react-icons/gr";
 
 export default function Restaurant({ data }) {
   const router = useRouter();
@@ -15,6 +17,17 @@ export default function Restaurant({ data }) {
         >
           <div className={classes.image}>
             <img src={item.image} />
+            <div className={classes.favorite}>
+              <p>
+                <span>
+                  <AiFillStar />
+                </span>
+                {item.rating}
+              </p>
+              <span className={classes.favSpan}>
+                <GrFavorite />
+              </span>
+            </div>
           </div>
           <div className={classes.content}>
             <img src={item.image} />

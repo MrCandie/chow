@@ -5,6 +5,7 @@ import { Fragment, useContext } from "react";
 import { CartContext } from "../../CartContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { MdOutlineAdd } from "react-icons/md";
 
 export default function CartItem({ cartData, id, quantity }) {
   const cart = useContext(CartContext);
@@ -22,7 +23,6 @@ export default function CartItem({ cartData, id, quantity }) {
   return (
     <section className={classes.cart}>
       <Fragment>
-        <hr />
         <div className={classes.container}>
           <div className={classes.image}>
             <img src={`../../..${item.images}`} />
@@ -47,8 +47,8 @@ export default function CartItem({ cartData, id, quantity }) {
 
                 <span>{quantity}</span>
 
-                <span onClick={updateCartItem} className={classes.span}>
-                  <GrAdd />
+                <span onClick={updateCartItem} className="add">
+                  <MdOutlineAdd />
                 </span>
               </div>
             </div>

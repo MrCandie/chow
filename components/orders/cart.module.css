@@ -15,6 +15,8 @@
   padding: 0.5rem;
   border-radius: 50%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 .cart {
   margin: 2rem auto;
@@ -57,14 +59,18 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  background: transparent;
+  border-radius: 0.2rem;
+  border: 1px solid #ccc;
 }
 .control .span {
-  border: 1px solid green;
+  border: 2px solid green;
   border-radius: 50%;
   padding: 0.3rem;
   display: flex;
   align-items: center;
   cursor: pointer;
+  font-size: 1.2rem;
 }
 .section hr {
   width: 100%;
@@ -87,6 +93,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0;
 }
 .cost p {
   font-size: 1rem;
@@ -94,7 +101,7 @@
 .none {
   display: block;
   text-align: center;
-  /* margin: 2rem 0; */
+  width: 100%;
 }
 .price button,
 .none {
@@ -106,6 +113,7 @@
   margin: 1rem 0;
   border-radius: 0.4rem;
   transition: transform ease-in 0.2s;
+  cursor: pointer;
 }
 .price button:active {
   transform: scale(0.6);

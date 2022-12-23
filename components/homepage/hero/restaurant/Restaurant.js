@@ -2,7 +2,7 @@ import Link from "next/link";
 import classes from "./restaurant.module.css";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { BiTimeFive } from "react-icons/bi";
-
+import { GoVerified } from "react-icons/go";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -42,23 +42,26 @@ export default function Restaurant({ restaurant }) {
               key={item.id}
               className={classes.restaurant}
             >
-              <div>
-                <div className={classes.image}>
-                  <img src={`../../..${item.image}`} />
-                </div>
-                <div className={classes.content}>
-                  <img src={`../../..${item.image}`} />
-                  <div className={classes.desc}>
-                    <h1>{item.name}</h1>
-                    <div className={classes.delivery}>
-                      <p>Free Delivery</p>
-                      <h2>
-                        <span>
-                          <BiTimeFive />
-                        </span>
-                        15-20mins
-                      </h2>
-                    </div>
+              <div className={classes.image}>
+                <img src={`../../..${item.image}`} />
+              </div>
+              <div className={classes.content}>
+                <img src={`../../..${item.image}`} />
+                <div className={classes.desc}>
+                  <h1>
+                    {item.name}
+                    <span>
+                      <GoVerified />
+                    </span>
+                  </h1>
+                  <div className={classes.delivery}>
+                    <p>Free Delivery</p>
+                    <h2>
+                      <span>
+                        <BiTimeFive />
+                      </span>
+                      15-20mins
+                    </h2>
                   </div>
                 </div>
               </div>
@@ -80,23 +83,26 @@ export default function Restaurant({ restaurant }) {
               key={item.id}
               className={classes.restaurant}
             >
-              <div>
-                <div className={classes.image}>
-                  <img src={`../../..${item.image}`} />
-                </div>
-                <div className={classes.content}>
-                  <img src={`../../..${item.image}`} />
-                  <div className={classes.desc}>
-                    <h1>{item.name}</h1>
-                    <div className={classes.delivery}>
-                      <p>Free Delivery</p>
-                      <h2>
-                        <span>
-                          <BiTimeFive />
-                        </span>
-                        15-20mins
-                      </h2>
-                    </div>
+              <div className={classes.image}>
+                <img src={`../../..${item.image}`} />
+              </div>
+              <div className={classes.content}>
+                <img src={`../../..${item.image}`} />
+                <div className={classes.desc}>
+                  <h1>
+                    {item.name}
+                    <span>
+                      <GoVerified />
+                    </span>
+                  </h1>
+                  <div className={classes.delivery}>
+                    <p>Free Delivery</p>
+                    <h2>
+                      <span>
+                        <BiTimeFive />
+                      </span>
+                      15-20mins
+                    </h2>
                   </div>
                 </div>
               </div>

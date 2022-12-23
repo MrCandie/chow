@@ -47,17 +47,14 @@ export default function Cart({ cartData }) {
 
           <div className={classes.price}>
             <h1>Price</h1>
-            <hr />
             <div className={classes.cost}>
               <p>Subtotal</p>
               <p>N{cart.getTotalCost()}</p>
             </div>
-            <hr />
             <div className={classes.cost}>
               <p>Discount</p>
               <p>N0.00</p>
             </div>
-            <hr />
             <div className={classes.cost}>
               <p>Delivery</p>
               <p>N{cart.getTotalCost() === 0 ? 0 : 600}</p>
@@ -65,18 +62,20 @@ export default function Cart({ cartData }) {
             <hr />
             <div className={classes.cost}>
               <p>Total</p>
-              <p>N{cart.getTotalCost() === 0 ? 0 : cost}</p>
+              <p>#{cart.getTotalCost() === 0 ? 0 : cost}</p>
             </div>
-            <hr />
             <button onClick={() => router.push("/checkout")}>
               Place Order Now
             </button>
           </div>
         </Fragment>
       ) : (
-        <Link className={classes.none} href="/meals">
-          Go back to restaurant
-        </Link>
+        <div className="container">
+          <h1>cart empty!</h1>
+          <Link className={classes.none} href="/meals">
+            Go back to restaurant
+          </Link>
+        </div>
       )}
     </section>
   );

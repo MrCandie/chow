@@ -36,10 +36,8 @@ export function CartProvider({ children }) {
   const router = useRouter();
   useEffect(() => {
     const initialToken = localStorage.getItem("token");
-    // setStoredToken(initialToken);
     setToken(initialToken);
-    console.log(token);
-  }, []);
+  }, [token]);
 
   const userIsLoggedIn = !!token;
 

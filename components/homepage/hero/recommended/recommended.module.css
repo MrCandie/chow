@@ -9,14 +9,17 @@
 }
 .title h1 {
   font-size: 1.5rem;
+  text-transform: capitalize;
+  font-weight: 600;
 }
 .title a {
   display: flex;
   gap: 1rem;
   font-size: 1rem;
   color: green;
-  font-weight: bold;
+  font-weight: 500;
   align-items: center;
+  text-transform: capitalize;
 }
 .title a span {
   display: flex;
@@ -31,9 +34,15 @@
   background: #fff;
   padding: 1rem;
   border-radius: 0.4rem;
+  cursor: pointer;
 }
 .image {
   width: 100%;
+  transition: all ease-out 0.2s;
+}
+.image:hover {
+  transform: scale(1.05);
+  opacity: 0.8;
 }
 .image img {
   width: 100%;
@@ -45,10 +54,12 @@
 }
 .content h1 {
   font-size: 1.5rem;
+  font-weight: 500;
   text-transform: capitalize;
 }
 .content h2 {
   font-size: 1rem;
+  font-weight: 600;
 }
 .mobile {
   display: none;
@@ -61,10 +72,15 @@
   .mobile {
     display: block;
   }
-  .content h1 {
+  .content h1,
+  .title h1,
+  .title a {
     font-size: 1rem;
   }
   .meal {
     width: 80%;
+  }
+  .image:hover {
+    transform: scale(1);
   }
 }

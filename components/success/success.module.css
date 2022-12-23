@@ -17,19 +17,9 @@
 .section p {
   font-size: 1rem;
   text-align: start;
+  text-transform: capitalize;
 }
 
-/* .section a {
-  padding: 1rem;
-  background: green;
-  color: #fff;
-  font-weight: bold;
-  text-align: center;
-  border-radius: 0.4rem;
-  display: block;
-  width: 50%;
-  margin: 2rem auto;
-} */
 .action {
   display: flex;
   align-items: center;
@@ -45,6 +35,8 @@
   display: block;
   width: 50%;
   margin: 2rem auto;
+  text-transform: capitalize;
+  cursor: pointer;
 }
 .home {
   padding: 1rem;
@@ -57,6 +49,8 @@
   width: 50%;
   margin: 2rem auto;
   border: 2px solid green;
+  text-transform: capitalize;
+  cursor: pointer;
 }
 @media (max-width: 850px) {
   .section {

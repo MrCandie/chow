@@ -17,7 +17,7 @@ export default function Meals() {
       setMeal(loadedData);
     }
     fetchData();
-  }, [meal]);
+  }, []);
   return (
     <Fragment>
       <Head>

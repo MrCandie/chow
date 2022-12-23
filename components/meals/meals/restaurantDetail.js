@@ -18,36 +18,6 @@ export default function RestaurantDetail({ data, name }) {
 
   return (
     <section className={classes.section}>
-      {false && (
-        <Fragment>
-          <h1>{restaurant.name}</h1>
-          <div className={classes.rating}>
-            <div className={classes.imgs}>
-              <div></div>
-              <img src={`../../..${restaurant.image}`} />
-            </div>
-            <span className={classes.rate}>
-              <span>
-                <AiOutlineClockCircle />
-              </span>
-              20-30m
-            </span>
-            <span className={classes.rate}>
-              <span>
-                <AiFillLike />
-              </span>
-              90%
-            </span>
-            <span className={classes.rate}>
-              <span>
-                <MdDeliveryDining />
-              </span>
-              90%
-            </span>
-          </div>
-        </Fragment>
-      )}
-
       <Fragment>
         <div className={classes.imgs}>
           <img src={restaurant.img} />
