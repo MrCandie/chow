@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import classes from "../meals/meals/meal.module.css";
 import { CartContext } from "../../CartContext";
 import { DUMMY_DATA } from "../../store";
@@ -7,9 +7,15 @@ import Link from "next/link";
 
 export default function Favorite() {
   const favoritesCtx = useContext(CartContext);
+  const [data, setData] = useState([]);
 
-  const favIds = favoritesCtx.ids.map((item) => item.id);
+  useEffect(() => {
+    const uid = localStorage.getItem("uid");
+    const filtered = favoritesCtx.ids.filter((item) => item.uid === uid);
+    setData(filtered);
+  }, [data]);
 
+  const favIds = data.map((item) => item.id);
   const favoriteMeals = DUMMY_DATA.filter((meal) => favIds.includes(meal.id));
 
   return (

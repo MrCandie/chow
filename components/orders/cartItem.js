@@ -16,8 +16,17 @@ export default function CartItem({ cartData, id, quantity }) {
   });
 
   async function updateCartItem() {
-    cart.addOneToCart(id, token);
+    const uid = localStorage.getItem("uid");
+    cart.addOneToCart(id, token, uid);
     toast.success("One item added to cart", { autoClose: 300 });
+  }
+
+  function removeFromCart() {
+    const uid = localStorage.getItem("uid");
+    cart.removeOneFromCart(item.id, token, uid);
+    toast.warning("One Item removed from cart", {
+      autoClose: 300,
+    });
   }
 
   return (
@@ -33,15 +42,7 @@ export default function CartItem({ cartData, id, quantity }) {
             <div className={classes.action}>
               <h2>N{item.price}</h2>
               <div className={classes.control}>
-                <span
-                  onClick={() => {
-                    cart.removeOneFromCart(item.id, token);
-                    toast.warning("One Item removed from cart", {
-                      autoClose: 300,
-                    });
-                  }}
-                  className={classes.span}
-                >
+                <span onClick={removeFromCart} className={classes.span}>
                   <AiOutlineMinus />
                 </span>
 

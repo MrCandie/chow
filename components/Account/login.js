@@ -54,7 +54,9 @@ export default function Login() {
         enteredPassword
       );
       setIsLoading(false);
-      cart.login(user._tokenResponse.idToken);
+      console.log(user);
+      cart.login(user._tokenResponse.idToken, user._tokenResponse.localId);
+      router.replace("/");
     } catch (err) {
       setIsLoading(false);
       toast.error(err.message);

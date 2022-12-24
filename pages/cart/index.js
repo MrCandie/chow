@@ -6,7 +6,7 @@ import Login from "../../components/Account/login";
 import { deplaceData, deplaceDummyData } from "../../store";
 
 export default function Carts() {
-  const Chickensdata = deplaceDummyData();
+  const allData = deplaceDummyData();
   const cart = useContext(CartContext);
   const isAuth = cart.isLoggedIn;
 
@@ -19,7 +19,7 @@ export default function Carts() {
           content="Get the best experience ordering for your favorite meal with ease from your favorite restaurant"
         />
       </Head>
-      {isAuth ? <Cart cartData={Chickensdata} /> : <Login />}
+      {isAuth ? <Cart cartData={allData} /> : <Login />}
     </Fragment>
   );
 }

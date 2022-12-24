@@ -41,23 +41,28 @@ export default function MealsDetails({ meals }) {
   const mealIsFavorite = mealIsFav.includes(meals.id);
 
   function mealFavoriteHandler() {
+    const uid = localStorage.getItem("uid");
     if (mealIsFavorite) {
       toast.success(`${meals.name} removed from favorites`);
       return cart.removeFavorite(meals.id, token);
     } else {
       toast.success(`${meals.name} added to favorites`);
-      return cart.addFavorite(meals.id, token);
+      return cart.addFavorite(meals.id, token, uid);
     }
   }
 
   async function sendCartData() {
-    cart.addOneToCart(meals.id, token);
+    const uid = localStorage.getItem("uid");
+    cart.addOneToCart(meals.id, token, uid);
     toast.success("One item added to cart", { autoClose: 300 });
   }
 
-  async function removeCartItem() {
-    cart.removeOneFromCart(meals.id, token);
-    toast.warning("One Item removed from cart", { autoClose: 300 });
+  function removeFromCart() {
+    const uid = localStorage.getItem("uid");
+    cart.removeOneFromCart(meals.id, token, uid);
+    toast.warning("One Item removed from cart", {
+      autoClose: 300,
+    });
   }
 
   return (
@@ -111,7 +116,7 @@ export default function MealsDetails({ meals }) {
         <div className={classes.cart}>
           <button onClick={sendCartData}>Add to cart</button>
           <div className={classes.add}>
-            <span onClick={removeCartItem}>
+            <span onClick={removeFromCart}>
               <AiOutlineMinus />
             </span>
             <p>{quantity}</p>

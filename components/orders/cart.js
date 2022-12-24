@@ -2,7 +2,7 @@ import classes from "./cart.module.css";
 import { IoIosArrowBack } from "react-icons/io";
 import CartItem from "./cartItem";
 import { useRouter } from "next/router";
-import { Fragment, useContext, useEffect } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { CartContext } from "../../CartContext";
 import Link from "next/link";
 import { getCart } from "../../util/http";
@@ -10,23 +10,28 @@ import { toast } from "react-toastify";
 
 export default function Cart({ cartData }) {
   const cart = useContext(CartContext);
-  const token = cart.token;
+  const [filteredData, setFilteredData] = useState([]);
+  const router = useRouter();
+
   useEffect(() => {
+    const uid = localStorage.getItem("uid");
+    const token = localStorage.getItem("token");
+
     async function fetchCart() {
       try {
         const item = await getCart(token);
         cart.setCartItem(item);
+        const filtered = cart.items.filter((item) => item.uid === uid);
+        setFilteredData(filtered);
       } catch (error) {
         toast.error("Something went wrong", error.message);
       }
     }
     fetchCart();
-  });
+  }, [filteredData]);
 
-  const router = useRouter();
   const cost = cart.getTotalCost() + 600;
-
-  const quantity = cart.items.reduce((acc, item) => acc + item.quantity, 0);
+  const quantity = filteredData.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <section className={classes.section}>
@@ -37,12 +42,8 @@ export default function Cart({ cartData }) {
 
       {quantity > 0 ? (
         <Fragment>
-          {cart.items.map((item) => (
-            <CartItem
-              cartData={cartData}
-              id={item.id}
-              quantity={item.quantity}
-            />
+          {filteredData.map((item) => (
+            <CartItem cartData={cartData} id={item.id} quantity={quantity} />
           ))}
 
           <div className={classes.price}>

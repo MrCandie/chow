@@ -13,7 +13,6 @@ import { CartContext } from "../../CartContext";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-  signOut,
 } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -73,7 +72,8 @@ export default function Register() {
         enteredPassword
       );
       setLoading(false);
-      cart.login(user._tokenResponse.idToken);
+      cart.login(user._tokenResponse.idToken, user._tokenResponse.localId);
+      router.replace("/introduction");
     } catch (err) {
       toast.error(err.message);
       setLoading(false);
